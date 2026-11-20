@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>中国式现代化 · 不背式卡片带背</title>
+<style>
+:root{
+  --bg:#f7f4ee;--card:#fff;--ink:#222;--sub:#5e5e5e;--line:#e5dfd3;
+  --red:#b3261e;--red2:#fbe9e7;--kw:#fff1b8;
+  --ok:#1b7f3b;--okbg:#e3f4e8;--okbd:#a5d8b5;
+  --mid:#9e5b00;--midbg:#fff3df;--midbd:#efc98a;
+  --bad:#c62828;--badbg:#fde7e7;--badbd:#f1aaaa;
+  --focus:#1a56db;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;-webkit-text-size-adjust:100%}
+a{color:inherit;text-decoration:none}
+button,textarea,input{font-family:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+[role="button"]{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:920px;margin:0 auto;padding:18px 16px 88px}
+header.top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+header.top h1{font-size:21px;margin:0;color:var(--red);letter-spacing:.4px}
+header.top .sp{flex:1}
+nav.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 14px;font-size:14px;cursor:pointer;color:var(--ink);line-height:1.4;min-height:38px;transition:border-color .15s,color .15s,background-color .15s,transform .1s}
+.btn:hover{border-color:var(--red);color:var(--red)}
+.btn:active{transform:scale(.99)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.pri{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.btn.pri:hover{opacity:.92;color:#fff}
+.btn.sm{padding:4px 10px;font-size:13px;min-height:32px;border-radius:8px}
+.btn.lg{padding:12px 22px;font-size:16px;min-height:48px;border-radius:12px;font-weight:700}
+.btn.ok{color:var(--ok);border-color:var(--okbd);background:#f6fcf8}
+.btn.ok:hover{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.btn.mid{color:var(--mid);border-color:var(--midbd);background:#fffaf1}
+.btn.mid:hover{background:var(--midbg);border-color:var(--mid);color:var(--mid)}
+.btn.bad{color:var(--bad);border-color:var(--badbd);background:#fff7f7}
+.btn.bad:hover{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.btn.on{font-weight:700}
+.btn.ok.on{background:var(--okbg);border-color:var(--ok)}
+.btn.mid.on{background:var(--midbg);border-color:var(--mid)}
+.btn.bad.on{background:var(--badbg);border-color:var(--bad)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px;min-width:0}
+.hero{background:linear-gradient(180deg,#fff 0%,#fffaf4 100%);border:1px solid #eadfce}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.countdown{display:inline-flex;align-items:center;gap:6px;background:var(--red2);color:var(--red);border:1px solid #f2ccc9;border-radius:20px;padding:4px 12px;font-size:13.5px;font-weight:600;cursor:pointer}
+.countdown:hover{background:#f8dcd9}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.stat b{display:block;font-size:26px;color:var(--red);line-height:1.2}
+.stat span{font-size:13px;color:var(--sub)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.hero-cta .main-btn{flex:1;min-width:220px}
+.sub-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.section-h{font-size:16px;margin:0 0 10px;color:var(--ink)}
+.qlist{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.qcard .t{font-weight:700;font-size:15.5px;line-height:1.45}
+.qcard .m{font-size:13px;color:var(--sub);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.qcard .qact{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto;padding-top:4px}
+.bar{height:7px;background:#eee8dc;border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);transition:width .25s}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:2px 9px;border-radius:12px;font-weight:600;white-space:nowrap}
+.badge.due{background:var(--red2);color:var(--red)}
+.badge.new{background:#e8eefc;color:#2f55b5}
+.badge.okb{background:var(--okbg);color:var(--ok)}
+.badge.mid{background:var(--midbg);color:var(--mid)}
+.badge.wait{background:#f1efe9;color:#555}
+/* ===== 刷卡页（手机端高适配） ===== */
+.study-wrap{max-width:760px;min-height:100dvh;margin:0 auto;padding:12px 14px calc(86px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
+.study-wrap main{flex:1;display:flex;flex-direction:column}
+.study-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.study-top .prog-txt{font-size:13.5px;color:var(--sub);font-weight:600}
+.study-top .sp{flex:1}
+.dots{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--sub)}
+.dot{width:10px;height:10px;border-radius:50%;border:1.5px solid #c5bca9;background:transparent;display:inline-block}
+.dot.on{background:var(--ok);border-color:var(--ok)}
+.dot.pend{background:#93d6a7;border-color:var(--ok)}
+.flashcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px 18px;box-shadow:0 4px 18px rgba(45,32,12,.04);margin-top:10px;flex:1;display:flex;flex-direction:column}
+.fc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.fc-title{font-size:18.5px;font-weight:700;line-height:1.45;margin:0 0 12px}
+.mn{background:var(--red2);border-radius:10px;padding:10px 14px;margin-bottom:14px}
+.mn .k{font-size:18px;font-weight:700;color:var(--red);letter-spacing:.5px;line-height:1.5;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.mn .tok{padding:1px 6px;border-radius:6px}
+.mn .tok.hi{background:var(--red);color:#fff}
+.mn .l{font-size:13.5px;color:#7a3b36;margin-top:3px}
+.fc-prompt{background:#faf8f3;border:1px dashed #d5ccb8;border-radius:12px;padding:22px 16px;text-align:center;color:#524b3f;margin-top:auto;margin-bottom:auto}
+.fc-prompt p{margin:0 0 10px;font-size:15.5px;font-weight:600}
+.fc-answer{border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
+.fc-ans-head{font-size:17px;font-weight:700;margin:0 0 8px;line-height:1.65}
+.fc-ans-body{font-size:16px;line-height:1.85;margin:0}
+.lab{font-weight:700;color:var(--red)}
+.kw{background:var(--kw);border-radius:3px;padding:0 3px;font-weight:600}
+.skel-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
+.skel-item{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fffdf9}
+.skel-toggle{width:100%;text-align:left;background:transparent;border:0;padding:0;font:inherit;cursor:pointer;color:var(--ink)}
+.skel-body{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:15px;color:#444}
+.sticky-bar{position:fixed;left:0;right:0;bottom:0;background:rgba(247,244,238,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));z-index:20}
+.sticky-inner{max-width:760px;margin:0 auto;display:flex;gap:10px;align-items:stretch}
+.sticky-inner .btn{flex:1;min-height:50px;font-size:16px;font-weight:700;border-radius:12px}
+.sticky-inner .btn.oops{flex:0 0 auto;min-width:118px;font-weight:600}
+.kbd{font-size:12.5px;color:var(--sub);text-align:center;margin-top:8px}
+/* ===== 内联提示/挖空 ===== */
+.blank{display:inline;border-bottom:2px solid #c3b79f;background:#efe9dd;color:transparent;border-radius:4px;cursor:pointer;padding:1px 4px;margin:0 1px;user-select:none;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.blank:hover{border-bottom-color:var(--red)}
+.blank.shown{color:var(--ink);background:#e3f0ff;border-bottom-color:#5b8fd9;user-select:auto}
+.fl{display:inline;padding:0 2px;cursor:pointer;color:inherit}
+.fl .firstc{font-weight:700;color:var(--red)}
+.fl .rest{color:transparent;border-bottom:1.5px dashed #b9ae98;user-select:none;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.fl.shown .rest{color:var(--ink);border-bottom-color:transparent;background:#e3f0ff;border-radius:3px;padding:0 2px;user-select:auto}
+/* ===== 题目浏览与默写 ===== */
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.qhead .sp{flex:1}
+.qtitle{font-size:20px;font-weight:700;margin:4px 0 12px;line-height:1.45}
+.intro{margin:0 0 12px;text-indent:2em}
+.pt{margin:8px 0;padding:10px 12px;border-radius:8px;border:1px solid #f0ebe0;background:#fffdf9}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.tools .hint{font-size:13px;color:var(--sub)}
+.lv.on{background:var(--red2);border-color:var(--red);color:var(--red);font-weight:700}
+label.lbl{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:var(--ink)}
+textarea{width:100%;min-height:240px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:16px/1.8 inherit;resize:vertical;background:#fffefa;color:var(--ink)}
+.score{font-size:32px;font-weight:700;color:var(--red);line-height:1.2}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chip{font-size:13px;padding:2px 10px;border-radius:12px;font-weight:600}
+.chip.h{background:var(--okbg);color:var(--ok)}.chip.p{background:var(--midbg);color:var(--mid)}.chip.m{background:var(--badbg);color:var(--bad)}
+.kw.h{background:var(--okbg);color:var(--ok)}.kw.p{background:var(--midbg);color:var(--mid)}.kw.m{background:var(--badbg);color:var(--bad);text-decoration:underline wavy}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.pane{background:#faf8f3;border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.pane h3{margin:0 0 8px;font-size:14px;color:var(--sub)}
+.timer{font-size:22px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums}
+.muted{color:var(--sub);font-size:13px}
+.hard-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:6px}
+.hard-item{background:#faf8f3;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+dialog{border:1px solid var(--line);border-radius:14px;padding:20px;max-width:420px;width:92%;box-shadow:0 12px 32px rgba(0,0,0,.16)}
+dialog::backdrop{background:rgba(0,0,0,.35)}
+dialog h2{margin:0 0 10px;font-size:18px}
+dialog .dlg-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+.field{margin:10px 0}
+.field input[type="date"]{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:15px;width:100%}
+@media (max-width:700px){
+  body{font-size:15.5px}
+  .wrap{padding:12px 10px 76px}
+  .study-wrap{padding:10px 10px 92px}
+  .flashcard{padding:16px 14px}
+  .stats{grid-template-columns:repeat(3,1fr);gap:8px}
+  .stat{padding:10px 10px}
+  .stat b{font-size:21px}
+  .qlist,.split{grid-template-columns:1fr}
+  .kbd{display:none}
+  .sticky-inner{gap:8px}
+  .sticky-inner .btn{padding:10px 8px;font-size:15px}
+  .sticky-inner .btn.oops{min-width:102px;font-size:14px}
+}
+/* ===== 打印 / PDF 版 ===== */
+body.print{background:#fff;color:#000;font-family:"Microsoft YaHei","SimHei","PingFang SC",sans-serif}
+body.print .wrap{max-width:900px;padding:12px 18px}
+.pv h1{font-size:18pt;text-align:center;color:var(--red);margin:0 0 2pt}
+.pv .subt{text-align:center;color:#555;font-size:9pt;margin:0 0 7pt}
+.pv table{width:100%;border-collapse:collapse;font-size:8.7pt;line-height:1.36}
+.pv caption{font-weight:700;font-size:10.5pt;margin-bottom:4pt;color:#222;text-align:left}
+.pv th,.pv td{border:1px solid #bbb;padding:3pt 5pt;vertical-align:top;text-align:left}
+.pv th{background:#f3ece4;font-weight:700}
+.pv td.qt{width:23%;font-weight:700}
+.pv td.k{width:16%;font-weight:700;color:var(--red)}
+.pv .q{margin-top:12pt}
+.pv .q h2{font-size:12pt;margin:0 0 4pt;padding:3pt 8pt;background:#f3ece4;border-left:4pt solid var(--red);break-after:avoid}
+.pv .q .mnp{font-size:9.5pt;color:#7a3b36;margin:0 0 4pt;break-after:avoid}
+.pv .q .mnp b{color:var(--red);font-size:10.5pt}
+.pv .q p{margin:2.5pt 0;font-size:10pt;line-height:1.65;break-inside:avoid}
+.pv .q p.in{text-indent:2em}
+.pv strong.kw{background:none;font-weight:700;text-decoration:underline;text-decoration-color:#c66;text-underline-offset:2pt;padding:0}
+.pv .lab{color:var(--red);font-weight:700}
+.pv .pb{break-before:page}
+@page{size:A4;margin:13mm 14mm}
+@media print{
+  body{background:#fff}
+  body.print .wrap{max-width:none;padding:0}
+  .noprint{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+'use strict';
+
+// ===== 题库数据（唯一数据源，[[...]] 为踩分关键词） =====
+const DATA = [
+  {
+    id: 1,
+    short: '人口规模巨大',
+    title: '1. 如何理解中国式现代化是人口规模巨大的现代化？',
+    mnemonic: { key: '是什么 · 为什么 · 怎么样 · 怎么做', line: '14亿首要特征 → 挑战与优势 → 特色与世界意义 → 从国情出发育才' },
+    intro: '可从[[是什么、为什么、怎么样、怎么做]]四个维度理解中国式现代化[[人口规模巨大]]这一显著特征。',
+    points: [
+      { label: '一、是什么：', head: '我国[[14亿多人口]]整体迈入现代化，是中国式现代化的[[首要特征]]。', body: '规模[[超过现有发达国家人口总和]]，在人类历史上是前所未有的，决定了现代化建设的[[艰巨性和复杂性]]。' },
+      { label: '二、为什么：', head: '人口规模巨大带来[[挑战与优势]]两方面影响。', body: '一方面要解决14亿多人的[[吃饭、就业、教育、医疗、住房、养老]]问题，并应对[[城乡、区域发展不平衡]]；另一方面拥有丰富[[人力资源]]和[[广阔市场空间]]，是推动发展的巨大潜力。' },
+      { label: '三、怎么样：', head: '推进方式必然[[独具特色]]，并具有深远[[世界意义]]。', body: '发展途径和推进方式不能照搬西方；14亿多人整体迈入现代化，将[[改变现代化的世界版图]]，为人口众多的[[发展中国家提供有益经验]]。' },
+      { label: '四、怎么做：', head: '坚持[[从国情出发]]，把[[人口优势转化为人才优势]]。', body: '考虑发展阶段和资源环境，[[保持历史耐心]]、[[循序渐进]]；通过发展教育和提高人口素质，把规模优势转化为[[人才优势和创新优势]]，统筹完善公共服务。' }
+    ]
+  },
+  {
+    id: 2,
+    short: '物质与精神文明',
+    title: '2. 如何理解中国式现代化是物质文明和精神文明相协调的现代化？',
+    mnemonic: { key: '互促 · 物 · 精 · 全面发展', line: '一关系两建设一目标' },
+    intro: '[[物质富足、精神富有]]是社会主义现代化的根本要求。中国式现代化既要提高生产力和物质生活水平，也要丰富人民的精神世界，[[促进人的全面发展]]。',
+    points: [
+      { label: '第一，', head: '两者[[相互联系、相互促进]]。', body: '物质文明为教育、文化事业提供[[物质基础]]；精神文明为现代化提供[[精神动力和智力支持]]，必须[[统筹推进]]。' },
+      { label: '第二，', head: '物质文明建设要[[夯实物质基础]]。', body: '坚持以经济建设为中心，[[推动高质量发展]]，增强[[科技创新能力]]，完善[[现代化产业体系]]，持续改善人民生活。' },
+      { label: '第三，', head: '精神文明建设要[[满足人民的精神文化需求]]。', body: '加强[[理想信念教育]]，践行[[社会主义核心价值观]]，发展[[社会主义先进文化]]，弘扬[[中华优秀传统文化]]，提高社会文明程度。' },
+      { label: '第四，', head: '目标是[[物的全面丰富和人的全面发展]]。', body: '把两个文明建设贯穿现代化全过程，让人民生活水平提高的同时，[[精神生活也更加充实]]。' }
+    ]
+  },
+  {
+    id: 3,
+    short: '根本动力：改革',
+    title: '3. 推进中国式现代化的根本动力是什么？为什么？',
+    mnemonic: { key: '理 · 史 · 现 · 长', line: '理论、历史、现实、长远四角度' },
+    intro: '[[全面深化改革]]是推进中国式现代化的根本动力。',
+    points: [
+      { label: '第一，', head: '从理论上看，改革能[[解放和发展生产力]]。', body: '社会发展中存在[[生产力与生产关系、经济基础与上层建筑]]的矛盾运动，改革推动[[生产关系适应生产力、上层建筑适应经济基础]]，为现代化创造制度条件。' },
+      { label: '第二，', head: '从历史上看，中国式现代化是在[[改革开放]]中不断推进的。', body: '改革开放深刻改变了经济体制、社会结构和对外关系，[[激发了人民群众的积极性和创造性]]；新时代全面深化改革[[破除了体制机制障碍]]，为全面建成小康社会提供了保障。' },
+      { label: '第三，', head: '从现实上看，必须靠改革解决[[深层次矛盾]]。', body: '推动[[高质量发展]]、发展[[新质生产力]]、促进[[社会公平正义]]，都要改革不适应的体制机制，才能[[释放创新潜力、增强发展活力]]。' },
+      { label: '第四，', head: '从长远看，改革为现代化提供持续的[[制度保障]]。', body: '深化改革有助于[[完善中国特色社会主义制度]]、提高[[国家治理能力]]，使现代化成果[[更多更公平惠及全体人民]]。' }
+    ]
+  },
+  {
+    id: 4,
+    short: '五项重大原则',
+    title: '4. 在推进中国式现代化的过程中，我们要牢牢把握哪些重大原则？',
+    mnemonic: { key: '党 · 路 · 民 · 改 · 斗', line: '党领路，为人民，靠改革，敢斗争' },
+    intro: '党的二十大提出，前进道路上必须牢牢把握[[五项重大原则]]。',
+    points: [
+      { label: '第一，', head: '坚持和加强[[党的全面领导]]。', body: '维护[[党中央权威和集中统一领导]]，把党的领导落实到各领域各方面各环节，[[确保正确方向]]。' },
+      { label: '第二，', head: '坚持[[中国特色社会主义道路]]。', body: '坚持党的[[基本路线]]，坚持[[独立自主、自力更生]]，把发展[[主动权牢牢掌握在自己手中]]。' },
+      { label: '第三，', head: '坚持[[以人民为中心]]的发展思想。', body: '维护[[人民根本利益]]，增进[[民生福祉]]，依靠人民推进发展，让[[全体人民更加公平地共享]]现代化成果。' },
+      { label: '第四，', head: '坚持[[深化改革开放]]。', body: '以改革[[破解深层次体制机制障碍]]，以开放[[拓展发展空间]]，增强现代化的[[动力和活力]]。' },
+      { label: '第五，', head: '坚持发扬[[斗争精神]]。', body: '增强[[忧患意识]]，[[统筹发展和安全]]，主动克服困难，维护国家[[主权、安全和发展利益]]。' }
+    ]
+  },
+  {
+    id: 5,
+    short: '毛泽东时期探索',
+    title: '5. 毛泽东时期（社会主义革命和建设时期）进行了哪些探索？取得了哪些成就？有什么意义？',
+    mnemonic: { key: '探4 · 成4 · 义3', line: '探索“总路线·一五·二结合·四化”；成就“制·工·弹·社”；意义“前提基础·物质人才·经验准备”' },
+    intro: '以毛泽东同志为主要代表的中国共产党人，在[[经济文化落后]]的条件下，对社会主义建设和国家现代化进行了[[艰辛探索]]。',
+    points: [
+      { label: '一、探索：', head: '围绕[[工业化和适合中国的建设道路]]展开探索。', body: '①提出[[过渡时期总路线]]（“一化三改”），把社会主义工业化和三大改造结合起来；②实施[[第一个五年计划]]，以工业建设为重点推进工业化；③提出马克思主义同中国实际进行“[[第二次结合]]”，发表《[[论十大关系]]》《[[关于正确处理人民内部矛盾的问题]]》；④[[党的八大]]提出集中力量发展生产力，[[1964年三届全国人大]]正式提出“[[四个现代化]]”目标（1954年一届全国人大已初步提出）。' },
+      { label: '二、成就：', head: '在[[制度、工业、科技和社会事业]]上取得重要成就。', body: '①确立[[社会主义基本制度]]；②建立起[[独立的比较完整的工业体系和国民经济体系]]；③“[[两弹一星]]”等尖端科技取得突破，国防力量增强；④[[教育、科学、文化、卫生]]等事业得到发展。' },
+      { label: '三、意义：', head: '提供了[[宝贵经验、理论准备、物质基础]]。', body: '社会主义制度的确立奠定了[[根本政治前提和制度基础]]；建设成就积累了[[物质条件和人才力量]]；探索形成的理论和经验为改革开放后开创中国特色社会主义作了重要准备（同时也从[[“大跃进”“文革”等曲折]]中吸取了必须[[实事求是、尊重经济规律]]的教训）。' }
+    ]
+  },
+  {
+    id: 6,
+    short: '打破“西方化”迷思',
+    title: '6. 何为“现代化=西方化”的迷思？为什么说中国式现代化打破了这一迷思？',
+    mnemonic: { key: '迷思 · 规 · 绩 · 值 · 文路', line: '先答何为迷思（发轫西方/东方从属），再答规·绩·值·文路' },
+    intro: '先说明[[“现代化=西方化”迷思的由来]]，再阐明中国式现代化如何以自身实践打破这一迷思。',
+    points: [
+      { label: '一、何为迷思：', head: '[[现代化发轫于西方]]，逐渐形成了“[[东方从属于西方]]”的格局。', body: '自工业革命以来，西方资本主义国家凭借[[现代生产力的迅猛发展]]占据主动，使人误以为[[现代化道路只有西方一种模式]]、现代化就等于西方化。' },
+      { label: '二、规律与特色：', head: '既遵循[[一般规律]]，又有[[中国特色]]。', body: '中国同样推进[[工业化和科技进步]]，同时坚持[[党的领导和社会主义制度]]，走出了符合自身国情的道路。' },
+      { label: '三、实践证明：', head: '[[实践成就]]证明自主道路走得通。', body: '通过建设和改革开放，中国实现经济快速发展，[[全面建成小康社会]]，展现了实现现代化的[[另一幅图景]]。' },
+      { label: '四、目标价值：', head: '提出了不同的[[目标和价值追求]]。', body: '面向巨大人口规模，追求[[共同富裕]]、[[两个文明相协调]]、[[人与自然和谐共生]]、[[和平发展]]，拓展了现代化的内涵。' },
+      { label: '五、文明与借鉴：', head: '统一了[[文明传承与现代发展]]，拓展了[[发展中国家的道路选择]]。', body: '立足[[中华优秀传统文化]]并[[借鉴人类优秀文明成果]]，为既想加快发展又想[[保持独立自主]]的国家提供了有益启示。' }
+    ]
+  },
+  {
+    id: 7,
+    short: '投资于物与投资于人',
+    title: '7. 为什么在推进中国式现代化中要坚持投资于物与投资于人相结合？',
+    mnemonic: { key: '民 · 效 · 新 · 需', line: '人民中心、投资效益、新质生产力、扩大内需' },
+    intro: '[[投资于物]]指对基础设施、生产设备等实物资产的投入；[[投资于人]]指在教育、医疗、培训、就业、社保等方面的投入。二者结合能使[[经济发展与民生改善形成良性循环]]。',
+    points: [
+      { label: '第一，', head: '这是坚持[[以人民为中心]]、促进人的全面发展的要求。', body: '现代化的目的是[[增进人民福祉]]，投资既要改善生产生活条件，也要满足人民在成长、就业、健康、养老等方面的需要。' },
+      { label: '第二，', head: '这是[[提高投资效益]]的要求。', body: '设备和基础设施要靠[[劳动者掌握和使用]]，劳动者发挥才能也需要[[相应的物质条件]]，统筹二者才能提高资源利用效率。' },
+      { label: '第三，', head: '这是发展[[新质生产力]]、推动高质量发展的要求。', body: '[[劳动者是生产力中最活跃的因素]]，提高劳动者素质，再和先进技术设备结合，才能增强创新能力、[[提高劳动生产率]]。' },
+      { label: '第四，', head: '这是[[扩大内需]]、畅通经济循环的要求。', body: '改善就业、收入和社保，能[[增强消费能力和信心]]；优质设施和设备能[[改善供给]]，形成投资、就业、收入、消费的[[良性循环]]。' }
+    ]
+  },
+  {
+    id: 8,
+    short: '教·科·才与新质生产力',
+    title: '8. 如何理解通过教育、科技、人才一体化改革，培育和发展新质生产力？',
+    mnemonic: { key: '要 · 联 · 接 · 协 · 转', line: '新要求、内在联系、解决衔接、三方协同、成果转化' },
+    intro: '[[教育、科技、人才]]是[[全面建设社会主义现代化国家]]的[[基础性、战略性支撑]]。推进三者[[一体化改革]]，能把人才培养、科学研究和产业发展紧密连接起来，为[[新质生产力]]提供支撑。',
+    points: [
+      { label: '第一，', head: '[[新质生产力]]对三者提出了更高要求。', body: '新质生产力[[以创新为主导]]，具有[[高科技、高效能、高质量]]特征，以[[提高全要素生产率]]为核心，需要不断产生新知识、新技术和高素质人才。' },
+      { label: '第二，', head: '三者具有[[内在联系]]。', body: '[[教育培养人才]]、传播知识；[[科技创新]]推动教育内容和培养方式更新；[[人才]]把知识转化为技术和现实生产力，三者形成良性循环。' },
+      { label: '第三，', head: '一体化改革要解决[[衔接不足]]的问题。', body: '让[[学科设置、科研布局、人才培养和产业发展]]更加匹配，完善[[科研评价、人才流动、成果转化]]和收益分配机制。' },
+      { label: '第四，', head: '从[[三个方面协同推进]]。', body: '教育上[[调整学科专业]]，培养拔尖创新人才和技能人才；科技上加强[[基础研究和关键核心技术攻关]]；人才上完善[[培养、引进、使用和流动]]机制。' },
+      { label: '第五，', head: '推动改革成果[[转化为生产力]]。', body: '加强[[高校、科研院所与企业合作]]，促进成果应用，推动[[传统产业升级、新兴产业和未来产业]]发展。' }
+    ]
+  }
+];
+
+// ===== 卡片生成（42张：34张分论点卡 + 8张骨架卡） =====
+function extractStrKeywords(str) {
+  const kws = [];
+  const re = /\[\[(.*?)\]\]/g;
+  let m;
+  while ((m = re.exec(str)) !== null) kws.push(m[1]);
+  return kws;
+}
+
+function buildCards(data) {
+  const list = [];
+  for (const q of data) {
+    const tokens = q.mnemonic.key.split(/\s*·\s*/);
+    q.points.forEach((p, idx) => {
+      list.push({
+        id: `q${q.id}-p${idx}`,
+        type: 'point',
+        qid: q.id,
+        pointIdx: idx,
+        frontTitle: `Q${q.id} ${q.short} · ${p.label.replace(/[，、：:]/g, '')}`,
+        frontQuestion: q.title,
+        mnemonicTokens: tokens,
+        mnemonicLine: q.mnemonic.line,
+        frontPrompt: '先在心里说出这一点的【观点句】和【展开关键词】',
+        backHead: p.label + p.head,
+        backBody: p.body,
+        keywords: [...extractStrKeywords(p.head), ...extractStrKeywords(p.body)]
+      });
+    });
+    list.push({
+      id: `q${q.id}-sk`,
+      type: 'skeleton',
+      qid: q.id,
+      frontTitle: `Q${q.id} ${q.short} · 整题骨架`,
+      frontQuestion: q.title,
+      mnemonicTokens: tokens,
+      mnemonicLine: q.mnemonic.line,
+      frontPrompt: `背出本题【口诀】、【总起句】和【全部 ${q.points.length} 个分论点观点句】`,
+      backMnemonic: q.mnemonic,
+      backIntro: q.intro,
+      backPoints: q.points.map(p => ({ label: p.label, head: p.head, body: p.body })),
+      keywords: [...extractStrKeywords(q.intro), ...q.points.flatMap(p => extractStrKeywords(p.head))]
+    });
+  }
+  return list;
+}
+
+const CARDS = buildCards(DATA);
+const CARD_MAP = Object.fromEntries(CARDS.map(c => [c.id, c]));
+
+// ===== 状态与日期工具 =====
+const STORAGE_KEY = 'sizheng_cards_v2';
+const DEFAULT_EXAM_DATE = '2026-11-21';
+const HOUR = 3600 * 1000;
+const LEVEL_HOURS = { 1: 3, 2: 10, 3: 20, 4: 32 };
+const EVE_HOURS = { 1: 1, 2: 2, 3: 4, 4: 6 };
+
+function todayStr(offsetDays = 0, baseDate = new Date()) {
+  const d = new Date(baseDate.getTime());
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + offsetDays);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function daysBetween(fromStr, toStr) {
+  const a = new Date(fromStr + 'T00:00:00');
+  const b = new Date(toStr + 'T00:00:00');
+  return Math.round((b - a) / 86400000);
+}
+
+function defaultCardState() {
+  return { level: 0, due: 0, lapses: 0, seen: 0, lastRating: null };
+}
+
+function defaultState(examDate = DEFAULT_EXAM_DATE, dateStr = todayStr()) {
+  return {
+    cards: {},
+    settings: { examDate },
+    daily: { date: dateStr, newIntroduced: 0, reviewedCount: 0, sessionsCompleted: 0 },
+    history: { dictationCount: 0, dictationTotalScore: 0 }
+  };
+}
+
+function normalizeDaily(st, dateStr = todayStr()) {
+  if (!st.daily || st.daily.date !== dateStr) {
+    st.daily = { date: dateStr, newIntroduced: 0, reviewedCount: 0, sessionsCompleted: 0 };
+  }
+  return st;
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return defaultState();
+    const p = JSON.parse(raw);
+    const st = {
+      cards: p.cards || {},
+      settings: { examDate: (p.settings && p.settings.examDate) || DEFAULT_EXAM_DATE },
+      daily: p.daily || { date: todayStr(), newIntroduced: 0, reviewedCount: 0, sessionsCompleted: 0 },
+      history: p.history || { dictationCount: 0, dictationTotalScore: 0 }
+    };
+    return normalizeDaily(st);
+  } catch (_) {
+    return defaultState();
+  }
+}
+
+let state = loadState();
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+}
+
+function getCardState(cardId, curState = state) {
+  if (!curState.cards[cardId]) curState.cards[cardId] = defaultCardState();
+  return curState.cards[cardId];
+}
+
+// ===== 复习调度核心（纯函数） =====
+const Scheduler = {
+  getRemainingLearnDays(curTodayStr, examDateStr) {
+    const daysLeft = daysBetween(curTodayStr, examDateStr);
+    return Math.max(1, daysLeft - 1);
+  },
+
+  getDailyNewQuota(curState = state, curTodayStr = todayStr()) {
+    const learnDays = this.getRemainingLearnDays(curTodayStr, curState.settings.examDate);
+    const unlearned = CARDS.filter(c => getCardState(c.id, curState).level === 0).length;
+    if (unlearned === 0) return 0;
+    const introduced = curState.daily && curState.daily.date === curTodayStr ? curState.daily.newIntroduced : 0;
+    const totalTarget = Math.ceil((unlearned + introduced) / learnDays);
+    return Math.min(unlearned, Math.max(0, totalTarget - introduced));
+  },
+
+  getDueCards(curState = state, nowMs = Date.now()) {
+    return CARDS
+      .filter(c => {
+        const s = getCardState(c.id, curState);
+        return s.level > 0 && s.due <= nowMs;
+      })
+      .sort((a, b) => getCardState(a.id, curState).due - getCardState(b.id, curState).due);
+  },
+
+  getWeakCards(curState = state) {
+    return CARDS.filter(c => {
+      const s = getCardState(c.id, curState);
+      return s.lapses >= 1 || s.lastRating === 'forgot' || s.lastRating === 'fuzzy';
+    });
+  },
+
+  makeItem(cardId) {
+    return {
+      cardId,
+      sessionStreak: 0,
+      targetStreak: 2,
+      hadTrouble: false,
+      hadForgot: false,
+      stepsInSession: 0
+    };
+  },
+
+  buildSession(mode, opts = {}, curState = state, nowMs = Date.now(), curTodayStr = todayStr()) {
+    let cardIds = [];
+    let label = '今日卡片任务';
+    let isExtraCram = false;
+
+    if (mode === 'daily') {
+      const due = this.getDueCards(curState, nowMs).map(c => c.id);
+      const quota = this.getDailyNewQuota(curState, curTodayStr);
+      const unlearned = CARDS.filter(c => getCardState(c.id, curState).level === 0).slice(0, quota).map(c => c.id);
+      cardIds = [...due, ...unlearned];
+      if (cardIds.length === 0) {
+        return this.buildSession('extra', opts, curState, nowMs, curTodayStr);
+      }
+      label = `今日任务（复习 ${due.length} + 新卡 ${unlearned.length}）`;
+    } else if (mode === 'extra') {
+      isExtraCram = true;
+      const unlearned = CARDS.filter(c => getCardState(c.id, curState).level === 0).slice(0, 15).map(c => c.id);
+      if (unlearned.length > 0) {
+        cardIds = unlearned;
+        label = `提前加刷（${cardIds.length} 张新卡）`;
+      } else {
+        cardIds = [...CARDS]
+          .sort((a, b) => {
+            const sa = getCardState(a.id, curState);
+            const sb = getCardState(b.id, curState);
+            if (sa.level !== sb.level) return sa.level - sb.level;
+            if (sa.lapses !== sb.lapses) return sb.lapses - sa.lapses;
+            return sa.due - sb.due;
+          })
+          .slice(0, 15)
+          .map(c => c.id);
+        label = `巩固加刷（最弱 ${cardIds.length} 张）`;
+      }
+    } else if (mode === 'sprint') {
+      cardIds = [...CARDS]
+        .sort((a, b) => {
+          const sa = getCardState(a.id, curState);
+          const sb = getCardState(b.id, curState);
+          if ((sa.level === 0) !== (sb.level === 0)) return sa.level === 0 ? -1 : 1;
+          if (sa.lapses !== sb.lapses) return sb.lapses - sa.lapses;
+          if (sa.level !== sb.level) return sa.level - sb.level;
+          return sa.due - sb.due;
+        })
+        .map(c => c.id);
+      label = `考前全量冲刺（${cardIds.length} 张）`;
+    } else if (mode === 'weak') {
+      cardIds = this.getWeakCards(curState).map(c => c.id);
+      label = `薄弱卡专练（${cardIds.length} 张）`;
+    } else if (mode === 'question') {
+      const qid = opts.qid || 1;
+      cardIds = CARDS.filter(c => c.qid === qid).map(c => c.id);
+      label = `第 ${qid} 题卡片练习（${cardIds.length} 张）`;
+    }
+
+    return {
+      mode,
+      label,
+      isExtraCram,
+      queue: cardIds.map(id => this.makeItem(id)),
+      graduated: [],
+      totalInitial: cardIds.length,
+      startMs: nowMs,
+      taps: { good: 0, fuzzy: 0, forgot: 0 },
+      phase: cardIds.length ? 'front' : 'done',
+      pendingRating: null,
+      showFirstHint: false,
+      expandedSkelPts: {}
+    };
+  },
+
+  graduateCard(cardId, item, curState = state, nowMs = Date.now(), isExtraCram = false) {
+    const c = getCardState(cardId, curState);
+    const prev = c.level || 0;
+    let nextLevel;
+    if (item.hadForgot) {
+      nextLevel = prev > 1 ? prev - 1 : 1;
+    } else if (item.hadTrouble) {
+      nextLevel = Math.max(1, prev);
+    } else {
+      nextLevel = Math.min(4, prev + 1);
+    }
+
+    const nowDateStr = todayStr(0, new Date(nowMs));
+    const daysLeft = daysBetween(nowDateStr, curState.settings.examDate);
+    const isEveOrDay = daysLeft <= 1;
+    const hoursMap = isEveOrDay ? EVE_HOURS : LEVEL_HOURS;
+
+    let rawDue = nowMs + hoursMap[nextLevel] * HOUR;
+    if (item.hadForgot) {
+      rawDue = Math.min(rawDue, nowMs + (isEveOrDay ? 1 : 3) * HOUR);
+    }
+
+    const examMorningCap = new Date(curState.settings.examDate + 'T07:30:00').getTime();
+    const examPreEvening = new Date(curState.settings.examDate + 'T20:00:00').getTime() - 24 * HOUR;
+    let due;
+    if (isEveOrDay) {
+      if (nowMs < examMorningCap) {
+        due = Math.max(nowMs + 0.5 * HOUR, Math.min(rawDue, examMorningCap));
+      } else {
+        due = nowMs + 0.5 * HOUR;
+      }
+    } else if (nowMs < examPreEvening) {
+      due = Math.max(nowMs + 2 * HOUR, Math.min(rawDue, examPreEvening));
+    } else {
+      due = nowMs + 2 * HOUR;
+    }
+
+    if (prev === 0 && curState.daily) {
+      curState.daily.newIntroduced += 1;
+    }
+
+    c.level = nextLevel;
+    if (isExtraCram) {
+      c.due = c.due ? Math.min(c.due, due) : due;
+    } else {
+      c.due = due;
+    }
+    return c;
+  },
+
+  stepSession(session, rating, curState = state, nowMs = Date.now()) {
+    if (!session.queue.length) {
+      session.phase = 'done';
+      return { graduated: false, item: null };
+    }
+    const item = session.queue.shift();
+    item.stepsInSession += 1;
+    const c = getCardState(item.cardId, curState);
+    c.seen += 1;
+    c.lastRating = rating;
+    if (curState.daily) curState.daily.reviewedCount += 1;
+    session.taps[rating] = (session.taps[rating] || 0) + 1;
+
+    let didGraduate = false;
+    if (rating === 'forgot') {
+      item.sessionStreak = 0;
+      item.hadTrouble = true;
+      item.hadForgot = true;
+      item.targetStreak = 3;
+      c.lapses += 1;
+      const idx = Math.min(session.queue.length, 3);
+      session.queue.splice(idx, 0, item);
+    } else if (rating === 'fuzzy') {
+      item.sessionStreak = 0;
+      item.hadTrouble = true;
+      item.targetStreak = 3;
+      const idx = Math.min(session.queue.length, 7);
+      session.queue.splice(idx, 0, item);
+    } else {
+      item.sessionStreak += 1;
+      if (item.sessionStreak >= item.targetStreak) {
+        didGraduate = true;
+        session.graduated.push(item);
+        this.graduateCard(item.cardId, item, curState, nowMs, session.isExtraCram);
+      } else {
+        const gap = item.hadTrouble ? 8 : 10;
+        const idx = Math.min(session.queue.length, gap);
+        session.queue.splice(idx, 0, item);
+      }
+    }
+
+    session.pendingRating = null;
+    session.showFirstHint = false;
+    session.expandedSkelPts = {};
+    if (session.queue.length === 0) {
+      session.phase = 'done';
+      if (curState.daily) curState.daily.sessionsCompleted += 1;
+    } else {
+      session.phase = 'front';
+    }
+    return { graduated: didGraduate, item };
+  }
+};
+
+// ===== 文本与计分工具 =====
+function stripKw(str) {
+  return str.replace(/\[\[(.*?)\]\]/g, '$1');
+}
+
+function extractKeywords(q) {
+  const kws = [];
+  kws.push(...extractStrKeywords(q.intro));
+  q.points.forEach(p => {
+    kws.push(...extractStrKeywords(p.head));
+    kws.push(...extractStrKeywords(p.body));
+  });
+  return kws;
+}
+
+function normalizeText(s) {
+  return s.replace(/[\s，。、；：！？“”‘’（）《》【】\[\],.;:!?()"'·\-—]/g, '');
+}
+
+function getBigrams(normStr) {
+  const res = [];
+  for (let i = 0; i < normStr.length - 1; i++) res.push(normStr.slice(i, i + 2));
+  return res;
+}
+
+function scoreKeyword(kw, normInput) {
+  const normKw = normalizeText(kw);
+  if (!normKw) return { status: 'h', ratio: 1 };
+  if (normInput.includes(normKw)) return { status: 'h', ratio: 1 };
+  if (kw.includes('、')) {
+    const parts = kw.split('、').map(normalizeText).filter(Boolean);
+    if (parts.length > 1) {
+      let hits = 0;
+      for (const p of parts) if (normInput.includes(p)) hits++;
+      if (hits === parts.length) return { status: 'h', ratio: 1 };
+      if (hits > 0) return { status: 'p', ratio: hits / parts.length };
+    }
+  }
+  const bigrams = getBigrams(normKw);
+  if (bigrams.length >= 2) {
+    let hitBg = 0;
+    for (const bg of bigrams) if (normInput.includes(bg)) hitBg++;
+    const overlap = hitBg / bigrams.length;
+    if (overlap >= 0.6) return { status: 'p', ratio: overlap };
+  }
+  return { status: 'm', ratio: 0 };
+}
+
+function scoreAnswer(q, userText) {
+  const normInput = normalizeText(userText || '');
+  const kws = extractKeywords(q);
+  const details = kws.map(kw => ({ kw, ...scoreKeyword(kw, normInput) }));
+  const total = details.length || 1;
+  const sum = details.reduce((acc, d) => acc + d.ratio, 0);
+  const score = Math.round((sum / total) * 100);
+  const suggest = score >= 85 ? 'good' : (score >= 60 ? 'fuzzy' : 'forgot');
+  return { score, suggest, details };
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function renderWithKeywords(str, kwClass = 'kw', useStrong = false) {
+  const tag = useStrong ? 'strong' : 'span';
+  return str.split(/(\[\[.*?\]\])/g).map(part => {
+    if (part.startsWith('[[') && part.endsWith(']]')) {
+      return `<${tag} class="${kwClass}">${esc(part.slice(2, -2))}</${tag}>`;
+    }
+    return esc(part);
+  }).join('');
+}
+
+function renderScoredText(str, details, cursorObj) {
+  return str.split(/(\[\[.*?\]\])/g).map(part => {
+    if (part.startsWith('[[') && part.endsWith(']]')) {
+      const d = details[cursorObj.i++] || { status: 'm' };
+      return `<span class="kw ${d.status}">${esc(part.slice(2, -2))}</span>`;
+    }
+    return esc(part);
+  }).join('');
+}
+
+function renderClozeText(str, allShown) {
+  return str.split(/(\[\[.*?\]\])/g).map(part => {
+    if (part.startsWith('[[') && part.endsWith(']]')) {
+      const inner = part.slice(2, -2);
+      return `<span role="button" tabindex="0" class="blank${allShown ? ' shown' : ''}" aria-pressed="${allShown ? 'true' : 'false'}">${esc(inner)}</span>`;
+    }
+    return esc(part);
+  }).join('');
+}
+
+function renderWholeCloze(str, allShown) {
+  const plain = stripKw(str);
+  const chunks = plain.split(/([；。])/).filter(Boolean);
+  let out = '';
+  for (const c of chunks) {
+    if (c === '；' || c === '。') out += esc(c);
+    else out += `<span role="button" tabindex="0" class="blank${allShown ? ' shown' : ''}" aria-pressed="${allShown ? 'true' : 'false'}">${esc(c)}</span>`;
+  }
+  return out;
+}
+
+function renderFirstLetterText(str, allShown) {
+  const plain = stripKw(str);
+  const tokens = plain.split(/([，。；：、！？])/).filter(Boolean);
+  return tokens.map(tok => {
+    if (/^[，。；：、！？]$/.test(tok)) return esc(tok);
+    const m = tok.match(/^([“‘（《①②③④]*)(.)(.*)$/);
+    if (!m) return esc(tok);
+    const [, prefix, firstChar, rest] = m;
+    if (!rest) return esc(tok);
+    return `${esc(prefix)}<span role="button" tabindex="0" class="fl${allShown ? ' shown' : ''}" aria-pressed="${allShown ? 'true' : 'false'}"><span class="firstc">${esc(firstChar)}</span><span class="rest">${esc(rest)}</span></span>`;
+  }).join('');
+}
+
+// ===== 路由与交互状态 =====
+let ui = {
+  session: null,
+  browseMode: 'read', // 'read' | 'cloze1' | 'cloze2'
+  allShown: false,
+  examQid: null,
+  examSeconds: 480,
+  examRunning: false,
+  examTimerId: null,
+  examShowMn: false,
+  examResult: null,
+  examText: ''
+};
+
+function stopExamTimer() {
+  if (ui.examTimerId) {
+    clearInterval(ui.examTimerId);
+    ui.examTimerId = null;
+  }
+}
+
+function parseRoute() {
+  const h = location.hash || '#/';
+  const parts = h.replace(/^#\/?/, '').split('/').filter(Boolean);
+  if (parts.length === 0) return { page: 'home' };
+  if (parts[0] === 'study') return { page: 'study' };
+  if (parts[0] === 'q') {
+    const id = parseInt(parts[1], 10);
+    const q = DATA.find(x => x.id === id) || DATA[0];
+    return { page: 'question', id: q.id };
+  }
+  if (parts[0] === 'exam') return { page: 'exam' };
+  if (parts[0] === 'print') return { page: 'print' };
+  if (parts[0] === 'selftest') return { page: 'selftest' };
+  return { page: 'home' };
+}
+
+function go(hash) {
+  location.hash = hash;
+}
+
+function startStudy(mode, opts = {}) {
+  normalizeDaily(state);
+  ui.session = Scheduler.buildSession(mode, opts, state, Date.now(), todayStr());
+  saveState();
+  go('#/study');
+}
+
+const app = document.getElementById('app');
+
+// ===== 首页 =====
+function renderHome() {
+  document.body.classList.remove('print');
+  stopExamTimer();
+  normalizeDaily(state);
+
+  const today = todayStr();
+  const nowMs = Date.now();
+  const daysLeft = daysBetween(today, state.settings.examDate);
+  const dueCount = Scheduler.getDueCards(state, nowMs).length;
+  const newQuota = Scheduler.getDailyNewQuota(state, today);
+  const weakCount = Scheduler.getWeakCards(state).length;
+  const masteredCount = CARDS.filter(c => getCardState(c.id).level >= 2).length;
+  const unlearnedCount = CARDS.filter(c => getCardState(c.id).level === 0).length;
+  const taskCount = dueCount + newQuota;
+  const ptTotal = CARDS.filter(c => c.type === 'point').length;
+  const skTotal = CARDS.filter(c => c.type === 'skeleton').length;
+  const countdownText = daysLeft > 1
+    ? `距考试（${state.settings.examDate}）剩 ${daysLeft} 天`
+    : (daysLeft === 1 ? `明天上午考试（${state.settings.examDate}）· 考前冲刺` : (daysLeft === 0 ? `今天考试（${state.settings.examDate}）` : `考试日期：${state.settings.examDate}`));
+
+  app.innerHTML = `
+    <div class="wrap">
+      <header class="top">
+        <h1>中国式现代化 · 卡片带背</h1>
+        <span class="sp"></span>
+        <nav class="actions" aria-label="辅助功能">
+          <button type="button" class="btn sm" id="btn-print">打印 / PDF</button>
+          <button type="button" class="btn sm" id="btn-reset">重置进度</button>
+        </nav>
+      </header>
+      <main>
+        <section class="card hero" aria-label="今日带背任务">
+          <div class="hero-top">
+            <div>
+              <strong style="font-size:17px">今日背诵计划</strong>
+              <div class="muted">共 ${CARDS.length} 张卡（${ptTotal} 分论点 + ${skTotal} 整题骨架），今日已刷 ${state.daily.reviewedCount} 次</div>
+            </div>
+            <button type="button" class="countdown" id="btn-exam-date">${esc(countdownText)} · 修改</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><b>${dueCount}</b><span>待复习卡片</span></div>
+            <div class="stat"><b>${newQuota}</b><span>今日新卡 <small style="font-size:12px;color:var(--sub);font-weight:400">(余${unlearnedCount})</small></span></div>
+            <div class="stat"><b>${masteredCount} / ${CARDS.length}</b><span>已掌握 (≥2级)</span></div>
+          </div>
+
+          <div class="hero-cta">
+            <button type="button" class="btn pri lg main-btn" id="btn-start-daily">
+              ${taskCount > 0 ? `点击即刷 · 开始今日 ${taskCount} 张` : '今日任务已完成 · 加刷一轮 (15 张)'}
+            </button>
+          </div>
+
+          <div class="sub-actions">
+            <button type="button" class="btn sm" id="btn-extra">加刷 15 张</button>
+            <button type="button" class="btn sm" id="btn-sprint">考前全量冲刺 (${CARDS.length}张)</button>
+            <button type="button" class="btn sm" id="btn-weak" ${weakCount === 0 ? 'disabled' : ''}>只刷薄弱卡 (${weakCount})</button>
+            <button type="button" class="btn sm" id="btn-exam">模拟默写抽考</button>
+          </div>
+        </section>
+
+        <h2 class="section-h">八道重点题（按题查看或单题刷卡）</h2>
+        <div class="qlist">
+          ${DATA.map(q => {
+            const qCards = CARDS.filter(c => c.qid === q.id);
+            const okCnt = qCards.filter(c => getCardState(c.id).level >= 2).length;
+            const startedCnt = qCards.filter(c => getCardState(c.id).level >= 1).length;
+            const pct = Math.round((okCnt / qCards.length) * 100);
+            const hasWeak = qCards.some(c => {
+              const s = getCardState(c.id);
+              return s.lapses >= 1 || s.lastRating === 'forgot' || s.lastRating === 'fuzzy';
+            });
+            return `
+              <article class="qcard">
+                <div class="t">${esc(q.title)}</div>
+                <div class="m">
+                  <span>口诀：${esc(q.mnemonic.key)}</span>
+                  <span class="badge ${okCnt === qCards.length ? 'okb' : (hasWeak ? 'due' : (startedCnt > 0 ? 'wait' : 'new'))}">
+                    已掌握 ${okCnt}/${qCards.length} 张
+                  </span>
+                </div>
+                <div class="bar" aria-label="掌握度 ${pct}%"><i style="width:${pct}%"></i></div>
+                <div class="qact">
+                  <button type="button" class="btn sm pri" data-qstudy="${q.id}">刷本题卡片</button>
+                  <button type="button" class="btn sm" data-qview="${q.id}">查看全文 / 挖空</button>
+                </div>
+              </article>
+            `;
+          }).join('')}
+        </div>
+
+        <p class="muted" style="margin:0">
+          刷卡规则：记住（连续 2 次过关，曾不熟或忘记过需连续 3 次）· 不熟（7 张后再出）· 忘记（3 张后再出）。考前冲刺间隔压缩为 1h / 2h / 4h / 6h，次日早 7:30 前再巩固一遍。
+        </p>
+      </main>
+    </div>
+
+    <dialog id="dlg-date" aria-labelledby="dlg-date-title">
+      <h2 id="dlg-date-title">设置考试日期</h2>
+      <p class="muted" style="margin:0">系统会自动按剩余天数分配每日新卡，并将复习间隔压缩到考前一天之前。</p>
+      <div class="field">
+        <label class="lbl" for="input-exam-date">考试日期</label>
+        <input type="date" id="input-exam-date" value="${esc(state.settings.examDate)}">
+      </div>
+      <div class="dlg-actions">
+        <button type="button" class="btn" id="dlg-date-cancel">取消</button>
+        <button type="button" class="btn pri" id="dlg-date-save">保存</button>
+      </div>
+    </dialog>
+
+    <dialog id="dlg-reset" aria-labelledby="dlg-reset-title">
+      <h2 id="dlg-reset-title">确认重置学习进度？</h2>
+      <p class="muted" style="margin:0">将清空 ${CARDS.length} 张卡片的记忆等级、复习时间和今日统计，题库内容不受影响。</p>
+      <div class="dlg-actions">
+        <button type="button" class="btn" id="dlg-reset-cancel">取消</button>
+        <button type="button" class="btn pri" id="dlg-reset-confirm">确认清空</button>
+      </div>
+    </dialog>
+  `;
+
+  document.getElementById('btn-start-daily').addEventListener('click', () => startStudy('daily'));
+  document.getElementById('btn-extra').addEventListener('click', () => startStudy('extra'));
+  document.getElementById('btn-sprint').addEventListener('click', () => startStudy('sprint'));
+  document.getElementById('btn-weak').addEventListener('click', () => startStudy('weak'));
+  document.getElementById('btn-exam').addEventListener('click', () => go('#/exam'));
+  document.getElementById('btn-print').addEventListener('click', () => go('#/print'));
+
+  document.getElementById('btn-exam-date').addEventListener('click', () => {
+    document.getElementById('dlg-date').showModal();
+  });
+  document.getElementById('dlg-date-cancel').addEventListener('click', () => {
+    document.getElementById('dlg-date').close();
+  });
+  document.getElementById('dlg-date-save').addEventListener('click', () => {
+    const val = document.getElementById('input-exam-date').value;
+    if (val) {
+      state.settings.examDate = val;
+      saveState();
+    }
+    document.getElementById('dlg-date').close();
+    renderHome();
+  });
+
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    document.getElementById('dlg-reset').showModal();
+  });
+  document.getElementById('dlg-reset-cancel').addEventListener('click', () => {
+    document.getElementById('dlg-reset').close();
+  });
+  document.getElementById('dlg-reset-confirm').addEventListener('click', () => {
+    const examDate = state.settings.examDate;
+    state = defaultState(examDate);
+    saveState();
+    document.getElementById('dlg-reset').close();
+    renderHome();
+  });
+
+  app.querySelectorAll('[data-qstudy]').forEach(btn => {
+    btn.addEventListener('click', () => startStudy('question', { qid: parseInt(btn.dataset.qstudy, 10) }));
+  });
+  app.querySelectorAll('[data-qview]').forEach(btn => {
+    btn.addEventListener('click', () => go(`#/q/${btn.dataset.qview}`));
+  });
+}
+
+// ===== 刷卡页（不背单词模式） =====
+function renderMnemonicBox(card, cardState, revealAll = false) {
+  const showHighlight = revealAll || cardState.level < 2;
+  return `
+    <div class="mn">
+      <div class="k">
+        <span>口诀：</span>
+        ${card.mnemonicTokens.map((tok, i) => {
+          const isHi = showHighlight && card.type === 'point' && i === card.pointIdx;
+          return `<span class="tok${isHi ? ' hi' : ''}">${esc(tok)}</span>${i < card.mnemonicTokens.length - 1 ? '<span>·</span>' : ''}`;
+        }).join('')}
+      </div>
+      <div class="l">${esc(card.mnemonicLine)}</div>
+    </div>
+  `;
+}
+
+function renderDots(item, pendingRating) {
+  const target = (pendingRating === 'fuzzy' || pendingRating === 'forgot') ? 3 : item.targetStreak;
+  const filled = item.sessionStreak;
+  const pend = pendingRating === 'good' ? filled + 1 : -1;
+  let html = '<span class="dots" title="本轮连续记住次数">';
+  for (let i = 0; i < target; i++) {
+    const cls = i < filled ? 'dot on' : (i + 1 === pend ? 'dot pend' : 'dot');
+    html += `<i class="${cls}"></i>`;
+  }
+  html += `<span style="margin-left:3px">${pendingRating === 'good' ? Math.min(target, filled + 1) : (pendingRating ? 0 : filled)}/${target}</span></span>`;
+  return html;
+}
+
+function renderStudy() {
+  document.body.classList.remove('print');
+  stopExamTimer();
+  if (!ui.session) {
+    normalizeDaily(state);
+    ui.session = Scheduler.buildSession('daily', {}, state, Date.now(), todayStr());
+  }
+  const sess = ui.session;
+
+  if (sess.phase === 'done' || sess.queue.length === 0) {
+    const elapsedSec = Math.max(1, Math.round((Date.now() - sess.startMs) / 1000));
+    const min = Math.floor(elapsedSec / 60);
+    const sec = elapsedSec % 60;
+    const hardest = [...sess.graduated]
+      .sort((a, b) => b.stepsInSession - a.stepsInSession)
+      .slice(0, 5);
+
+    app.innerHTML = `
+      <div class="wrap">
+        <header class="top">
+          <button type="button" class="btn" id="btn-home">← 返回首页</button>
+          <span class="sp"></span>
+          <span class="badge okb">${esc(sess.label)}</span>
+        </header>
+        <main>
+          <section class="card" style="text-align:center;padding:26px 20px">
+            <h1 style="margin:0 0 6px;color:var(--ok)">本轮过关完成！</h1>
+            <p class="muted" style="margin:0 0 16px">全部 ${sess.graduated.length} 张卡片已在密集回忆中连续过关</p>
+            <div class="stats">
+              <div class="stat"><b>${min}分${String(sec).padStart(2, '0')}秒</b><span>本轮用时</span></div>
+              <div class="stat"><b>${sess.taps.good}</b><span>“记住”次数</span></div>
+              <div class="stat"><b>${sess.taps.fuzzy + sess.taps.forgot}</b><span>“不熟 / 忘记”</span></div>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px">
+              <button type="button" class="btn pri" id="btn-done-home">返回首页</button>
+              <button type="button" class="btn" id="btn-done-extra">再来一轮 (15张)</button>
+              <button type="button" class="btn" id="btn-done-sprint">考前全量冲刺 (${CARDS.length}张)</button>
+            </div>
+          </section>
+
+          ${hardest.length ? `
+            <section class="card">
+              <h2 class="section-h">本轮最需要留意的卡片</h2>
+              <ul class="hard-list">
+                ${hardest.map(h => {
+                  const card = CARD_MAP[h.cardId];
+                  return `
+                    <li class="hard-item">
+                      <span><strong>${esc(card.frontTitle)}</strong>（本轮刷了 ${h.stepsInSession} 次）</span>
+                      <button type="button" class="btn sm" data-qview="${card.qid}">翻看原题</button>
+                    </li>
+                  `;
+                }).join('')}
+              </ul>
+            </section>
+          ` : ''}
+        </main>
+      </div>
+    `;
+
+    document.getElementById('btn-home').addEventListener('click', () => go('#/'));
+    document.getElementById('btn-done-home').addEventListener('click', () => go('#/'));
+    document.getElementById('btn-done-extra').addEventListener('click', () => startStudy('extra'));
+    document.getElementById('btn-done-sprint').addEventListener('click', () => startStudy('sprint'));
+    app.querySelectorAll('[data-qview]').forEach(btn => {
+      btn.addEventListener('click', () => go(`#/q/${btn.dataset.qview}`));
+    });
+    return;
+  }
+
+  const item = sess.queue[0];
+  const card = CARD_MAP[item.cardId];
+  const cState = getCardState(card.id);
+  const doneCnt = sess.graduated.length;
+  const totalCnt = sess.totalInitial;
+  const pct = totalCnt ? Math.round((doneCnt / totalCnt) * 100) : 0;
+  const isBack = sess.phase === 'back';
+  const ratingMeta = {
+    good: { cls: 'okb', text: '已选：记住' },
+    fuzzy: { cls: 'mid', text: '已选：不熟（稍后 7 张后再出）' },
+    forgot: { cls: 'due', text: '已选：忘记（3 张后再出 · 需连对3次）' }
+  };
+
+  let backHtml = '';
+  if (isBack) {
+    if (card.type === 'point') {
+      backHtml = `
+        <div class="fc-answer">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            <span class="badge ${ratingMeta[sess.pendingRating].cls}">${ratingMeta[sess.pendingRating].text}</span>
+            <span class="muted">熟练度 ${cState.level} 级${cState.lapses ? ` · 累计遗忘 ${cState.lapses} 次` : ''}</span>
+          </div>
+          <p class="fc-ans-head">${renderWithKeywords(card.backHead)}</p>
+          <p class="fc-ans-body">${renderWithKeywords(card.backBody)}</p>
+        </div>
+      `;
+    } else {
+      backHtml = `
+        <div class="fc-answer">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            <span class="badge ${ratingMeta[sess.pendingRating].cls}">${ratingMeta[sess.pendingRating].text}</span>
+            <span class="muted">熟练度 ${cState.level} 级</span>
+          </div>
+          ${renderMnemonicBox(card, cState, true)}
+          <p class="intro">${renderWithKeywords(card.backIntro)}</p>
+          <ul class="skel-list">
+            ${card.backPoints.map((p, i) => {
+              const isOpen = !!sess.expandedSkelPts[i];
+              return `
+                <li class="skel-item">
+                  <button type="button" class="skel-toggle" data-skel-pt="${i}" aria-expanded="${isOpen}">
+                    <span class="lab">${esc(p.label)}</span><strong>${renderWithKeywords(p.head)}</strong>
+                    <span class="muted" style="margin-left:6px">${isOpen ? '▲ 收起' : '▼ 展开详情'}</span>
+                  </button>
+                  ${isOpen ? `<div class="skel-body">${renderWithKeywords(p.body)}</div>` : ''}
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        </div>
+      `;
+    }
+  }
+
+  let firstHintHtml = '';
+  if (!isBack && sess.showFirstHint) {
+    if (card.type === 'point') {
+      firstHintHtml = `
+        <div style="margin-top:12px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px">
+          <p style="margin:0 0 4px"><strong>${renderFirstLetterText(card.backHead, false)}</strong></p>
+          <p style="margin:0;font-size:15px">${renderFirstLetterText(card.backBody, false)}</p>
+        </div>
+      `;
+    } else {
+      firstHintHtml = `
+        <div style="margin-top:12px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px">
+          ${card.backPoints.map(p => `<p style="margin:3px 0"><span class="lab">${esc(p.label)}</span>${renderFirstLetterText(p.head, false)}</p>`).join('')}
+        </div>
+      `;
+    }
+  }
+
+  app.innerHTML = `
+    <div class="study-wrap">
+      <header class="study-top">
+        <button type="button" class="btn sm" id="btn-exit">← 首页</button>
+        <span class="prog-txt">已过关 ${doneCnt}/${totalCnt} · 队列余 ${sess.queue.length}</span>
+        <span class="sp"></span>
+        ${renderDots(item, sess.pendingRating)}
+      </header>
+      <div class="bar" aria-label="本轮进度 ${pct}%"><i style="width:${pct}%"></i></div>
+
+      <main>
+        <article class="flashcard">
+          <div class="fc-meta">
+            <span class="badge ${card.type === 'skeleton' ? 'new' : 'wait'}">${card.type === 'skeleton' ? '整题骨架卡' : '分论点卡'}</span>
+            <span class="muted">${esc(card.frontTitle)}</span>
+            <span class="sp" style="flex:1"></span>
+            <button type="button" class="btn sm" id="btn-browse-q">翻看原题</button>
+          </div>
+
+          <h1 class="fc-title">${esc(card.frontQuestion)}</h1>
+          ${card.type === 'point' && (!isBack || card.type === 'point') ? renderMnemonicBox(card, cState, isBack) : ''}
+
+          ${!isBack ? `
+            <div class="fc-prompt">
+              <p>${esc(card.frontPrompt)}</p>
+              <button type="button" class="btn sm" id="btn-first-hint">${sess.showFirstHint ? '收起首字提示' : '偷看首字提示'}</button>
+              ${firstHintHtml}
+            </div>
+          ` : backHtml}
+        </article>
+        <div class="kbd">
+          ${!isBack
+            ? '快捷键：1 记住 · 2 不熟 · 3 忘记'
+            : '快捷键：Space / Enter 下一张 · Z 记错了（改判忘记）'}
+        </div>
+      </main>
+    </div>
+
+    <div class="sticky-bar">
+      <div class="sticky-inner">
+        ${!isBack ? `
+          <button type="button" class="btn ok" id="btn-rate-good">记住 <small>(1)</small></button>
+          <button type="button" class="btn mid" id="btn-rate-fuzzy">不熟 <small>(2)</small></button>
+          <button type="button" class="btn bad" id="btn-rate-forgot">忘记 <small>(3)</small></button>
+        ` : `
+          ${sess.pendingRating !== 'forgot' ? `<button type="button" class="btn bad oops" id="btn-oops">记错了 <small>(Z)</small></button>` : ''}
+          <button type="button" class="btn pri" id="btn-next-card">下一张 → <small>(Space)</small></button>
+        `}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('btn-exit').addEventListener('click', () => go('#/'));
+  document.getElementById('btn-browse-q').addEventListener('click', () => go(`#/q/${card.qid}`));
+
+  if (!isBack) {
+    document.getElementById('btn-first-hint').addEventListener('click', () => {
+      sess.showFirstHint = !sess.showFirstHint;
+      renderStudy();
+    });
+    document.getElementById('btn-rate-good').addEventListener('click', () => chooseStudyRating('good'));
+    document.getElementById('btn-rate-fuzzy').addEventListener('click', () => chooseStudyRating('fuzzy'));
+    document.getElementById('btn-rate-forgot').addEventListener('click', () => chooseStudyRating('forgot'));
+    app.querySelectorAll('.fl').forEach(el => {
+      el.addEventListener('click', () => {
+        const now = el.classList.toggle('shown');
+        el.setAttribute('aria-pressed', now ? 'true' : 'false');
+      });
+    });
+  } else {
+    const oopsBtn = document.getElementById('btn-oops');
+    if (oopsBtn) {
+      oopsBtn.addEventListener('click', () => {
+        sess.pendingRating = 'forgot';
+        renderStudy();
+      });
+    }
+    document.getElementById('btn-next-card').addEventListener('click', advanceStudyCard);
+    app.querySelectorAll('[data-skel-pt]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = btn.dataset.skelPt;
+        sess.expandedSkelPts[idx] = !sess.expandedSkelPts[idx];
+        renderStudy();
+      });
+    });
+  }
+}
+
+function chooseStudyRating(rating) {
+  if (!ui.session || ui.session.phase !== 'front') return;
+  ui.session.pendingRating = rating;
+  ui.session.phase = 'back';
+  renderStudy();
+}
+
+function advanceStudyCard() {
+  if (!ui.session || ui.session.phase !== 'back') return;
+  const rating = ui.session.pendingRating || 'good';
+  Scheduler.stepSession(ui.session, rating, state, Date.now());
+  saveState();
+  renderStudy();
+}
+
+// ===== 题目浏览（全文 + 挖空） =====
+function renderQuestion(qid) {
+  document.body.classList.remove('print');
+  stopExamTimer();
+  const q = DATA.find(x => x.id === qid) || DATA[0];
+  const prevQ = q.id > 1 ? q.id - 1 : null;
+  const nextQ = q.id < DATA.length ? q.id + 1 : null;
+  const mode = ui.browseMode;
+
+  let bodyHtml = '';
+  if (mode === 'read') {
+    bodyHtml = `
+      <p class="intro">${renderWithKeywords(q.intro)}</p>
+      ${q.points.map(p => `
+        <div class="pt">
+          <span class="lab">${esc(p.label)}</span><strong>${renderWithKeywords(p.head)}</strong>${renderWithKeywords(p.body)}
+        </div>
+      `).join('')}
+    `;
+  } else {
+    const isL2 = mode === 'cloze2';
+    bodyHtml = `
+      <p class="intro">${renderClozeText(q.intro, ui.allShown)}</p>
+      ${q.points.map(p => `
+        <div class="pt">
+          <span class="lab">${esc(p.label)}</span><strong>${renderClozeText(p.head, ui.allShown)}</strong>${isL2 ? renderWholeCloze(p.body, ui.allShown) : renderClozeText(p.body, ui.allShown)}
+        </div>
+      `).join('')}
+    `;
+  }
+
+  app.innerHTML = `
+    <div class="wrap">
+      <header class="qhead">
+        <button type="button" class="btn sm" id="btn-home">← 返回首页</button>
+        <button type="button" class="btn sm pri" id="btn-study-q">刷本题卡片</button>
+        <span class="sp"></span>
+        <button type="button" class="btn sm" id="btn-prev" ${prevQ ? '' : 'disabled'}>← 上一题</button>
+        <span class="muted">${q.id} / ${DATA.length}</span>
+        <button type="button" class="btn sm" id="btn-next" ${nextQ ? '' : 'disabled'}>下一题 →</button>
+      </header>
+      <main>
+        <div class="card">
+          <h1 class="qtitle">${esc(q.title)}</h1>
+          <div class="mn">
+            <div class="k">口诀：${esc(q.mnemonic.key)}</div>
+            <div class="l">${esc(q.mnemonic.line)}</div>
+          </div>
+          <div class="tools">
+            <button type="button" class="btn sm lv${mode === 'read' ? ' on' : ''}" data-bm="read">全文精读</button>
+            <button type="button" class="btn sm lv${mode === 'cloze1' ? ' on' : ''}" data-bm="cloze1">挖关键词</button>
+            <button type="button" class="btn sm lv${mode === 'cloze2' ? ' on' : ''}" data-bm="cloze2">挖展开整句</button>
+            ${mode !== 'read' ? `<button type="button" class="btn sm" id="btn-toggle-all">${ui.allShown ? '全部隐藏 (A)' : '全部显示 (A)'}</button>` : ''}
+          </div>
+          ${bodyHtml}
+        </div>
+      </main>
+    </div>
+  `;
+
+  document.getElementById('btn-home').addEventListener('click', () => go('#/'));
+  document.getElementById('btn-study-q').addEventListener('click', () => startStudy('question', { qid: q.id }));
+  if (prevQ) document.getElementById('btn-prev').addEventListener('click', () => { ui.allShown = false; go(`#/q/${prevQ}`); });
+  if (nextQ) document.getElementById('btn-next').addEventListener('click', () => { ui.allShown = false; go(`#/q/${nextQ}`); });
+
+  app.querySelectorAll('[data-bm]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      ui.browseMode = btn.dataset.bm;
+      ui.allShown = false;
+      renderQuestion(q.id);
+    });
+  });
+
+  const tog = document.getElementById('btn-toggle-all');
+  if (tog) {
+    tog.addEventListener('click', () => {
+      ui.allShown = !ui.allShown;
+      renderQuestion(q.id);
+    });
+  }
+  const toggleInline = (el) => {
+    const now = el.classList.toggle('shown');
+    el.setAttribute('aria-pressed', now ? 'true' : 'false');
+  };
+  app.querySelectorAll('.blank').forEach(el => {
+    el.addEventListener('click', () => toggleInline(el));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleInline(el);
+      }
+    });
+  });
+}
+
+// ===== 模拟默写抽考 =====
+function pickExamQuestion(excludeId = null) {
+  const weakQids = new Set(Scheduler.getWeakCards(state).map(c => c.qid));
+  const dueQids = new Set(Scheduler.getDueCards(state).map(c => c.qid));
+  let pool = DATA.filter(q => weakQids.has(q.id) || dueQids.has(q.id));
+  if (!pool.length) pool = DATA;
+  const filtered = pool.filter(q => q.id !== excludeId);
+  const finalPool = filtered.length ? filtered : pool;
+  return finalPool[Math.floor(Math.random() * finalPool.length)].id;
+}
+
+function formatSec(sec) {
+  const m = String(Math.floor(sec / 60)).padStart(2, '0');
+  const s = String(sec % 60).padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function startExamQuestion(excludeId = null) {
+  stopExamTimer();
+  ui.examQid = pickExamQuestion(excludeId);
+  ui.examSeconds = 480;
+  ui.examRunning = true;
+  ui.examShowMn = false;
+  ui.examResult = null;
+  ui.examText = '';
+  ui.examTimerId = setInterval(() => {
+    if (!ui.examRunning) return;
+    if (ui.examSeconds > 0) {
+      ui.examSeconds--;
+      const tEl = document.getElementById('exam-timer');
+      if (tEl) tEl.textContent = formatSec(ui.examSeconds);
+    } else {
+      ui.examRunning = false;
+      stopExamTimer();
+    }
+  }, 1000);
+}
+
+function renderExam() {
+  document.body.classList.remove('print');
+  if (!ui.examQid) startExamQuestion(null);
+  const q = DATA.find(x => x.id === ui.examQid) || DATA[0];
+  const r = ui.examResult;
+  const cursor = { i: 0 };
+  const suggestMap = { good: '较好', fuzzy: '偏弱', forgot: '遗漏较多' };
+
+  app.innerHTML = `
+    <div class="wrap">
+      <header class="qhead">
+        <button type="button" class="btn sm" id="btn-home">← 返回首页</button>
+        <span class="sp"></span>
+        <span class="timer" id="exam-timer" aria-live="off">${formatSec(ui.examSeconds)}</span>
+        <button type="button" class="btn sm" id="btn-pause">${ui.examRunning ? '暂停计时' : '继续计时'}</button>
+        <button type="button" class="btn sm" id="btn-swap">换一题</button>
+      </header>
+      <main>
+        <div class="card">
+          <div class="muted">模拟默写抽考（优先抽薄弱与待复习题目 · 漏掉的分论点会自动标为薄弱卡，不影响复习计划）</div>
+          <h1 class="qtitle">${esc(q.title)}</h1>
+          <div class="tools">
+            <button type="button" class="btn sm" id="btn-exam-mn">${ui.examShowMn ? '隐藏口诀' : '看一眼口诀'}</button>
+            <button type="button" class="btn sm" id="btn-exam-cards">用卡片刷本题</button>
+          </div>
+          ${ui.examShowMn ? `<div class="mn"><div class="k">口诀：${esc(q.mnemonic.key)}</div><div class="l">${esc(q.mnemonic.line)}</div></div>` : ''}
+          <label class="lbl" for="exam-input">考场作答区</label>
+          <textarea id="exam-input" placeholder="先写总起句，再按“第一、第二……”分条作答…">${esc(ui.examText)}</textarea>
+          <div class="tools" style="margin-top:10px">
+            <button type="button" class="btn pri" id="btn-exam-grade">交卷批改</button>
+            <button type="button" class="btn" id="btn-exam-next">再抽一题 →</button>
+          </div>
+          ${r ? `
+            <div class="card" style="background:#fffdf9;margin-top:10px">
+              <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+                <span class="score">${r.score} 分</span>
+                <span class="muted">关键词命中评估：<strong>${suggestMap[r.suggest]}</strong></span>
+              </div>
+              <div class="chips">
+                ${r.details.map(d => `<span class="chip ${d.status}">${d.status === 'h' ? '✓ ' : (d.status === 'p' ? '△ ' : '✗ ')}${esc(d.kw)}</span>`).join('')}
+              </div>
+              <div class="split">
+                <div class="pane">
+                  <h3>你的作答</h3>
+                  <div style="white-space:pre-wrap">${ui.examText ? esc(ui.examText) : '<span class="muted">（未输入文字）</span>'}</div>
+                </div>
+                <div class="pane">
+                  <h3>参考答案对照</h3>
+                  <p class="intro" style="margin-bottom:6px">${renderScoredText(q.intro, r.details, cursor)}</p>
+                  ${q.points.map(p => `<div style="margin:4px 0"><span class="lab">${esc(p.label)}</span><strong>${renderScoredText(p.head, r.details, cursor)}</strong>${renderScoredText(p.body, r.details, cursor)}</div>`).join('')}
+                </div>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+      </main>
+    </div>
+  `;
+
+  document.getElementById('btn-home').addEventListener('click', () => go('#/'));
+  document.getElementById('btn-pause').addEventListener('click', () => { ui.examRunning = !ui.examRunning; renderExam(); });
+  document.getElementById('btn-swap').addEventListener('click', () => { startExamQuestion(q.id); renderExam(); });
+  document.getElementById('btn-exam-next').addEventListener('click', () => { startExamQuestion(q.id); renderExam(); });
+  document.getElementById('btn-exam-mn').addEventListener('click', () => { ui.examShowMn = !ui.examShowMn; renderExam(); });
+  document.getElementById('btn-exam-cards').addEventListener('click', () => startStudy('question', { qid: q.id }));
+
+  const ta = document.getElementById('exam-input');
+  ta.addEventListener('input', () => { ui.examText = ta.value; });
+  document.getElementById('btn-exam-grade').addEventListener('click', () => {
+    ui.examText = ta.value;
+    ui.examRunning = false;
+    const res = scoreAnswer(q, ui.examText);
+    ui.examResult = res;
+    state.history.dictationCount += 1;
+    state.history.dictationTotalScore += res.score;
+    // 把漏掉关键词的分论点标记为薄弱（不改 level 和 due）
+    const normInput = normalizeText(ui.examText || '');
+    q.points.forEach((p, idx) => {
+      const kws = [...extractStrKeywords(p.head), ...extractStrKeywords(p.body)];
+      const missed = kws.some(k => scoreKeyword(k, normInput).status === 'm');
+      if (missed) {
+        const cs = getCardState(`q${q.id}-p${idx}`);
+        if (cs.lastRating !== 'forgot') cs.lastRating = 'fuzzy';
+      }
+    });
+    saveState();
+    renderExam();
+  });
+}
+
+// ===== 打印版 =====
+function renderPrint() {
+  document.body.classList.add('print');
+  stopExamTimer();
+  app.innerHTML = `
+    <div class="wrap">
+      <div class="noprint tools" style="margin-bottom:14px">
+        <button type="button" class="btn" id="btn-home">← 返回首页</button>
+        <button type="button" class="btn pri" id="btn-do-print">打印 / 另存为 PDF</button>
+        <span class="hint">打印设置建议：A4 纸、默认边距、勾选“背景图形”</span>
+      </div>
+      <main class="pv">
+        <h1>中国式现代化重点八题 · 背诵讲义</h1>
+        <p class="subt">第 1 页为口诀与观点骨架速览，第 2 页起为关键词加粗全文</p>
+        <table>
+          <caption>八题口诀与核心骨架速查表</caption>
+          <thead>
+            <tr>
+              <th scope="col">题目</th>
+              <th scope="col">记忆口诀</th>
+              <th scope="col">核心观点骨架</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${DATA.map(q => `
+              <tr>
+                <td class="qt">${esc(q.title)}</td>
+                <td class="k">${esc(q.mnemonic.key)}<br><span style="font-weight:400;color:#555;font-size:8.5pt">${esc(q.mnemonic.line)}</span></td>
+                <td>${q.points.map(p => `<div><b>${esc(p.label)}</b>${esc(stripKw(p.head))}</div>`).join('')}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <div class="pb">
+          ${DATA.map(q => `
+            <section class="q">
+              <h2>${esc(q.title)}</h2>
+              <p class="mnp"><b>口诀：${esc(q.mnemonic.key)}</b>（${esc(q.mnemonic.line)}）</p>
+              <p class="in">${renderWithKeywords(q.intro, 'kw', true)}</p>
+              ${q.points.map(p => `<p><span class="lab">${esc(p.label)}</span><strong>${renderWithKeywords(p.head, 'kw', true)}</strong>${renderWithKeywords(p.body, 'kw', true)}</p>`).join('')}
+            </section>
+          `).join('')}
+        </div>
+      </main>
+    </div>
+  `;
+  document.getElementById('btn-home').addEventListener('click', () => go('#/'));
+  document.getElementById('btn-do-print').addEventListener('click', () => window.print());
+}
+
+// ===== 自检页（使用独立内存状态，不改动真实 localStorage） =====
+function renderSelfTest() {
+  document.body.classList.remove('print');
+  stopExamTimer();
+  const logs = [];
+  let ok = true;
+  const assert = (cond, msg) => {
+    logs.push(`${cond ? 'PASS' : 'FAIL'}: ${msg}`);
+    if (!cond) ok = false;
+  };
+
+  // 1. 42 张卡片完整性（34 分论点卡 + 8 骨架卡）
+  assert(CARDS.length === 42, `CARDS.length === 42 (got ${CARDS.length})`);
+  const ids = new Set(CARDS.map(c => c.id));
+  assert(ids.size === 42, `All 42 card IDs unique (${ids.size})`);
+  const ptCards = CARDS.filter(c => c.type === 'point').length;
+  const skCards = CARDS.filter(c => c.type === 'skeleton').length;
+  assert(ptCards === 34 && skCards === 8, `34 point cards + 8 skeleton cards (got ${ptCards}+${skCards})`);
+
+  // 2. 队列插回与连续 2/3 次过关
+  const t0 = new Date('2026-11-18T10:00:00').getTime();
+  const stQ = defaultState('2026-11-21', '2026-11-18');
+  const qIds = CARDS.slice(0, 15).map(c => c.id);
+  const sessQ = {
+    mode: 'extra', label: 'test', isExtraCram: false,
+    queue: qIds.map(id => Scheduler.makeItem(id)),
+    graduated: [], totalInitial: 15, startMs: t0,
+    taps: { good: 0, fuzzy: 0, forgot: 0 }, phase: 'front',
+    pendingRating: null, showFirstHint: false, expandedSkelPts: {}
+  };
+
+  // 忘记 -> 插到 index 3，targetStreak=3
+  const c0 = sessQ.queue[0].cardId;
+  Scheduler.stepSession(sessQ, 'forgot', stQ, t0);
+  assert(sessQ.queue[3].cardId === c0 && sessQ.queue[3].targetStreak === 3 && sessQ.queue[3].sessionStreak === 0,
+    'Forgot reinserts at index 3, targetStreak=3, streak=0');
+
+  // 模糊 -> 插到 index 7，targetStreak=3
+  const c1 = sessQ.queue[0].cardId;
+  Scheduler.stepSession(sessQ, 'fuzzy', stQ, t0);
+  assert(sessQ.queue[7].cardId === c1 && sessQ.queue[7].targetStreak === 3 && sessQ.queue[7].sessionStreak === 0,
+    'Fuzzy reinserts at index 7, targetStreak=3, streak=0');
+
+  // 干净卡第 1 次认识 -> 插到 index 10，streak=1，未过关
+  const c2 = sessQ.queue[0].cardId;
+  const rGood1 = Scheduler.stepSession(sessQ, 'good', stQ, t0);
+  assert(!rGood1.graduated && sessQ.queue[10].cardId === c2 && sessQ.queue[10].sessionStreak === 1 && sessQ.queue[10].targetStreak === 2,
+    'Clean card 1st good reinserts at index 10, streak=1/2');
+
+  // 让干净卡 c2 连续第 2 次认识 -> 过关
+  while (sessQ.queue[0].cardId !== c2) {
+    // 若刚好遇到 c0/c1 先不测，推进其它
+    Scheduler.stepSession(sessQ, 'good', stQ, t0);
+  }
+  const rGood2 = Scheduler.stepSession(sessQ, 'good', stQ, t0);
+  assert(rGood2.graduated && rGood2.item.cardId === c2, 'Clean card graduates on 2nd consecutive good');
+
+  // 验证曾忘记过的 c0 需要连续 3 次认识才过关
+  const stC0 = defaultState('2026-11-21', '2026-11-18');
+  const sC0 = Scheduler.buildSession('extra', {}, stC0, t0, '2026-11-18');
+  const targetId = sC0.queue[0].cardId;
+  Scheduler.stepSession(sC0, 'forgot', stC0, t0);
+  let gCount = 0;
+  let steps = 0;
+  let graduatedAfter2 = false;
+  let graduatedAfter3 = false;
+  while (sC0.queue.length > 0 && steps < 200) {
+    steps++;
+    const cur = sC0.queue[0].cardId;
+    const res = Scheduler.stepSession(sC0, 'good', stC0, t0);
+    if (cur === targetId) {
+      gCount++;
+      if (gCount === 2 && res.graduated) graduatedAfter2 = true;
+      if (gCount === 3 && res.graduated) graduatedAfter3 = true;
+    }
+  }
+  assert(!graduatedAfter2 && graduatedAfter3, 'Troubled card requires 3 consecutive good (not 2)');
+  assert(sC0.queue.length === 0 && sC0.graduated.length === 15, `Session completes with all 15 graduated (${steps} steps)`);
+
+  // 3. “记错了”改判测试（模拟前端：先选 good 到背面，再改判 forgot 后提交）
+  const stOops = defaultState('2026-11-21', '2026-11-18');
+  const sOops = Scheduler.buildSession('extra', {}, stOops, t0, '2026-11-18');
+  const firstOopsId = sOops.queue[0].cardId;
+  sOops.pendingRating = 'good';
+  sOops.phase = 'back';
+  // 点记错了
+  sOops.pendingRating = 'forgot';
+  Scheduler.stepSession(sOops, sOops.pendingRating, stOops, t0);
+  assert(sOops.queue[3].cardId === firstOopsId && sOops.queue[3].targetStreak === 3 && stOops.cards[firstOopsId].lapses === 1,
+    'Oops override switches good->forgot: index 3, targetStreak=3, lapses=1');
+
+  // 4. 完整混合随机一轮收敛测试
+  const stMix = defaultState('2026-11-21', '2026-11-18');
+  const sMix = Scheduler.buildSession('extra', {}, stMix, t0, '2026-11-18');
+  let mixSteps = 0;
+  while (sMix.queue.length > 0 && mixSteps < 200) {
+    mixSteps++;
+    const mod = mixSteps % 9;
+    const rate = mod === 1 ? 'forgot' : (mod === 4 ? 'fuzzy' : 'good');
+    Scheduler.stepSession(sMix, rate, stMix, t0);
+  }
+  assert(sMix.queue.length === 0 && sMix.graduated.length === 15,
+    `Mixed-rating 15-card round converges cleanly (${mixSteps} steps)`);
+
+  // 5. 跨天压缩记忆曲线（含考前夜超密压缩）
+  const stCurve = defaultState('2026-11-21', '2026-11-18');
+  const cleanItem = (id) => ({ cardId: id, sessionStreak: 2, targetStreak: 2, hadTrouble: false, hadForgot: false });
+  const cLv1 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stCurve, t0, false);
+  assert(cLv1.level === 1 && cLv1.due === t0 + 3 * HOUR, 'Curve level 1 (3d left) -> +3h');
+  const cLv2 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stCurve, t0, false);
+  assert(cLv2.level === 2 && cLv2.due === t0 + 10 * HOUR, 'Curve level 2 (3d left) -> +10h');
+  const cLv3 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stCurve, t0, false);
+  assert(cLv3.level === 3 && cLv3.due === t0 + 20 * HOUR, 'Curve level 3 (3d left) -> +20h');
+
+  const stEve = defaultState('2026-11-21', '2026-11-20');
+  const tEve = new Date('2026-11-20T17:00:00').getTime();
+  const examMorning = new Date('2026-11-21T07:30:00').getTime();
+  const eLv1 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stEve, tEve, false);
+  assert(eLv1.level === 1 && eLv1.due === tEve + 1 * HOUR, 'Eve level 1 -> +1h');
+  const eLv2 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stEve, tEve, false);
+  assert(eLv2.level === 2 && eLv2.due === tEve + 2 * HOUR, 'Eve level 2 -> +2h');
+  const eLv3 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stEve, tEve, false);
+  assert(eLv3.level === 3 && eLv3.due === tEve + 4 * HOUR, 'Eve level 3 -> +4h');
+  const tLateEve = new Date('2026-11-21T05:00:00').getTime();
+  const eLv4 = Scheduler.graduateCard('q1-p0', cleanItem('q1-p0'), stEve, tLateEve, false);
+  assert(eLv4.level === 4 && eLv4.due === examMorning, 'Eve level 4 capped at 2026-11-21 07:30');
+  const forgotItem = { cardId: 'q1-p0', sessionStreak: 3, targetStreak: 3, hadTrouble: true, hadForgot: true };
+  const cDrop = Scheduler.graduateCard('q1-p0', forgotItem, stEve, tEve, false);
+  assert(cDrop.level === 3 && cDrop.due === tEve + 1 * HOUR, 'Eve forgot drops level 4->3 and schedules +1h');
+
+  // 6. 每日配额计算（11月18日距11月21日剩3天，学新卡用2天：ceil(42/2)=21）
+  const stQuota = defaultState('2026-11-21', '2026-11-18');
+  const qNov18 = Scheduler.getDailyNewQuota(stQuota, '2026-11-18');
+  assert(qNov18 === 21, `Daily new quota on 2026-11-18 for 2026-11-21 exam === 21 (got ${qNov18})`);
+  const qNov20 = Scheduler.getDailyNewQuota(stQuota, '2026-11-20');
+  assert(qNov20 === 42, `Daily new quota on exam eve (if all unlearned) === 42 (got ${qNov20})`);
+
+  // 7. 原有关键词计分与打印视图检查
+  DATA.forEach(q => {
+    const fullText = [stripKw(q.intro), ...q.points.map(p => stripKw(p.head) + stripKw(p.body))].join('\n');
+    const sFull = scoreAnswer(q, fullText);
+    assert(sFull.score === 100, `Q${q.id} full score === 100 (got ${sFull.score})`);
+    const sEmpty = scoreAnswer(q, '');
+    assert(sEmpty.score === 0, `Q${q.id} empty score === 0 (got ${sEmpty.score})`);
+  });
+
+  renderPrint();
+  assert(app.querySelectorAll('.pv .q').length === 8, 'Print view renders all 8 questions');
+  document.body.classList.remove('print');
+
+  app.innerHTML = `
+    <div class="wrap">
+      <main class="card" id="selftest-report" data-status="${ok ? 'PASS' : 'FAIL'}">
+        <h1>自检结果：${ok ? 'PASS' : 'FAIL'}</h1>
+        <pre style="white-space:pre-wrap;font-size:13px;line-height:1.5">${esc(logs.join('\n'))}</pre>
+        <button type="button" class="btn" onclick="location.hash='#/'">返回首页</button>
+      </main>
+    </div>
+  `;
+}
+
+// ===== 路由分发与全局快捷键 =====
+function render() {
+  const route = parseRoute();
+  if (route.page === 'home') renderHome();
+  else if (route.page === 'study') renderStudy();
+  else if (route.page === 'question') renderQuestion(route.id);
+  else if (route.page === 'exam') renderExam();
+  else if (route.page === 'print') renderPrint();
+  else if (route.page === 'selftest') renderSelfTest();
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.target && (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT')) return;
+  const route = parseRoute();
+  if (route.page === 'study' && ui.session && ui.session.phase !== 'done') {
+    if (ui.session.phase === 'front') {
+      if (e.key === '1') { e.preventDefault(); chooseStudyRating('good'); }
+      else if (e.key === '2') { e.preventDefault(); chooseStudyRating('fuzzy'); }
+      else if (e.key === '3') { e.preventDefault(); chooseStudyRating('forgot'); }
+    } else if (ui.session.phase === 'back') {
+      if (e.key === ' ' || e.key === 'Enter') {
+        if (document.activeElement && document.activeElement.id === 'btn-oops') return;
+        e.preventDefault();
+        advanceStudyCard();
+      } else if ((e.key === 'z' || e.key === 'Z') && ui.session.pendingRating !== 'forgot') {
+        e.preventDefault();
+        ui.session.pendingRating = 'forgot';
+        renderStudy();
+      }
+    }
+  } else if (route.page === 'question') {
+    if ((e.key === 'a' || e.key === 'A') && ui.browseMode !== 'read') {
+      ui.allShown = !ui.allShown;
+      renderQuestion(route.id);
+    } else if (e.key === 'ArrowLeft' && route.id > 1) {
+      ui.allShown = false;
+      go(`#/q/${route.id - 1}`);
+    } else if (e.key === 'ArrowRight' && route.id < DATA.length) {
+      ui.allShown = false;
+      go(`#/q/${route.id + 1}`);
+    }
+  }
+});
+
+window.addEventListener('hashchange', render);
+render();
+</script>
+</body>
+</html>
