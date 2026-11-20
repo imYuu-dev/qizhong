@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      var savedScheme = localStorage.getItem("color-scheme");
+      document.querySelector('meta[name="color-scheme"]').content = savedScheme || "light dark";
+    } catch (e) {}
+  </script>
+  <title>研究生英语期中高效备考系统</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data/bundle.js"></script>
+  <script defer src="js/store.js"></script>
+  <script defer src="js/ui-home.js"></script>
+  <script defer src="js/ui-translation.js"></script>
+  <script defer src="js/ui-cloze.js"></script>
+  <script defer src="js/ui-summary.js"></script>
+  <script defer src="js/ui-mock.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link visually-hidden">跳至主内容</a>
+
+  <header class="site-header">
+    <div class="wrap header-top">
+      <div class="brand-block">
+        <h1>研究生英语期中高效备考系统</h1>
+        <p class="subtitle">严格依据 2026-11-04 课堂纪要与核验版教材 · 本地离线可用 · 主动回忆 + 错题回收</p>
+      </div>
+      <div class="header-actions">
+        <a href="../" class="btn btn-ghost btn-subject-switch" id="btn-switch-politics" hidden>
+          <span aria-hidden="true">🏛️</span> 思政复习
+        </a>
+        <button type="button" class="btn btn-ghost" id="btn-open-guide">
+          <span aria-hidden="true">📋</span> <span class="btn-text-full">教师评分五关</span><span class="btn-text-short">五关</span>
+        </button>
+        <button type="button" class="btn btn-ghost" id="btn-jump-errors">
+          <span aria-hidden="true">🎯</span> 错题<span class="btn-text-full">本</span> <span class="badge-count" id="header-error-count">0</span>
+        </button>
+        <button type="button" class="btn btn-ghost" id="btn-open-settings">
+          <span aria-hidden="true">⚙️</span> <span class="btn-text-full">备份与外观</span><span class="btn-text-short">设置</span>
+        </button>
+      </div>
+    </div>
+
+    <nav class="primary-nav wrap" aria-label="备考功能模块">
+      <button type="button" class="nav-tab is-active" data-tab="home" aria-current="page">
+        <span class="tab-icon" aria-hidden="true">⚡</span>
+        <span class="tab-label"><span class="tab-full">快速抢分</span><span class="tab-short">抢分</span></span>
+        <span class="tab-meta">总览与冲刺</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="translation">
+        <span class="tab-icon" aria-hidden="true">📝</span>
+        <span class="tab-label"><span class="tab-full">翻译快背</span><span class="tab-short">翻译</span></span>
+        <span class="tab-meta">5 中译英 · 10 英译中</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="cloze">
+        <span class="tab-icon" aria-hidden="true">🧩</span>
+        <span class="tab-label"><span class="tab-full">完形专练</span><span class="tab-short">完形</span></span>
+        <span class="tab-meta">5 篇 Text A · 10 分</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="summary">
+        <span class="tab-icon" aria-hidden="true">✍️</span>
+        <span class="tab-label"><span class="tab-full">16 篇 Summary</span><span class="tab-short">概述</span></span>
+        <span class="tab-meta">16 选 1 · 20 分</span>
+      </button>
+      <button type="button" class="nav-tab" data-tab="mock">
+        <span class="tab-icon" aria-hidden="true">🎯</span>
+        <span class="tab-label"><span class="tab-full">模拟考试</span><span class="tab-short">模拟</span></span>
+        <span class="tab-meta">全真组卷与错题本</span>
+      </button>
+    </nav>
+  </header>
+
+  <div id="sprint-banner" class="sprint-banner" hidden>
+    <div class="wrap sprint-banner-inner">
+      <div class="sprint-status">
+        <strong id="sprint-title">冲刺模式进行中</strong>
+        <span id="sprint-detail"></span>
+      </div>
+      <div class="sprint-controls">
+        <span class="sprint-timer" id="sprint-timer">00:00</span>
+        <button type="button" class="btn btn-sm btn-primary" id="btn-sprint-next">下一项任务 →</button>
+        <button type="button" class="btn btn-sm btn-outline" id="btn-sprint-stop">结束冲刺</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content" class="wrap main-shell" tabindex="-1">
+    <section id="panel-home" class="tab-panel" aria-labelledby="tab-heading-home"></section>
+    <section id="panel-translation" class="tab-panel" hidden aria-labelledby="tab-heading-translation"></section>
+    <section id="panel-cloze" class="tab-panel" hidden aria-labelledby="tab-heading-cloze"></section>
+    <section id="panel-summary" class="tab-panel" hidden aria-labelledby="tab-heading-summary"></section>
+    <section id="panel-mock" class="tab-panel" hidden aria-labelledby="tab-heading-mock"></section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p id="footer-local-links">
+      资料溯源：<a href="../README.md" target="_blank" rel="noopener">材料总目录</a> ·
+      <a href="../review/text-a-proofreading.html" target="_blank" rel="noopener">Text A 逐页图文对照</a> ·
+      <a href="../提取报告.md" target="_blank" rel="noopener">提取报告</a> ·
+      <a href="../缺失与待核对.md" target="_blank" rel="noopener">缺失与待核对清单</a>
+    </p>
+    <p class="footer-note">本系统严格区分「教材/教师官方资料」与「AI 辅助模拟/参考答案」。翻译官方参考译文均为只读引用。</p>
+  </footer>
+
+  <!-- Centralized Live Region for non-blocking status feedback -->
+  <div id="live-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+  <div id="toast-bar" class="toast-bar" hidden aria-hidden="true"></div>
+
+  <!-- Native Modal: Source Reader & Scan Cross-check -->
+  <dialog id="dialog-source" closedby="any" aria-labelledby="dialog-source-title">
+    <div class="dialog-head">
+      <h2 id="dialog-source-title">原文溯源对照</h2>
+      <form method="dialog">
+        <button type="submit" value="close" class="btn btn-sm btn-outline" aria-label="关闭原文对照">关闭</button>
+      </form>
+    </div>
+    <div id="dialog-source-body" class="dialog-body"></div>
+  </dialog>
+
+  <!-- Native Modal: Teacher Five Gates Guide -->
+  <dialog id="dialog-guide" closedby="any" aria-labelledby="dialog-guide-title">
+    <div class="dialog-head">
+      <h2 id="dialog-guide-title">2026-11-04 课堂纪要：考试范围与 Summary 五关规则</h2>
+      <form method="dialog">
+        <button type="submit" value="close" class="btn btn-sm btn-outline" aria-label="关闭课堂纪要规则">关闭</button>
+      </form>
+    </div>
+    <div id="dialog-guide-body" class="dialog-body"></div>
+  </dialog>
+
+  <!-- Native Modal: Settings, Color Scheme & Backup/Restore -->
+  <dialog id="dialog-settings" closedby="any" aria-labelledby="dialog-settings-title">
+    <div class="dialog-head">
+      <h2 id="dialog-settings-title">学习进度备份与显示设置</h2>
+      <form method="dialog">
+        <button type="submit" value="close" class="btn btn-sm btn-outline" aria-label="关闭设置窗口">关闭</button>
+      </form>
+    </div>
+    <div id="dialog-settings-body" class="dialog-body">
+      <fieldset class="settings-group">
+        <legend>显示外观主题（默认跟随系统）</legend>
+        <div class="radio-row" role="radiogroup" aria-label="主题模式">
+          <label class="radio-pill"><input type="radio" name="theme-mode" value="system"> 跟随系统 (<span id="system-theme-hint">浅色</span>)</label>
+          <label class="radio-pill"><input type="radio" name="theme-mode" value="light"> 浅色护眼</label>
+          <label class="radio-pill"><input type="radio" name="theme-mode" value="dark"> 深色夜间</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="settings-group">
+        <legend>学习进度备份与恢复（进度自动保存在本机浏览器）</legend>
+        <p class="muted-text">学习记录与源码完全分离。建议考前换设备或清理缓存前导出 JSON 备份文件。</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" id="btn-export-progress">导出进度 JSON</button>
+          <label class="btn btn-outline file-upload-label" for="input-import-progress">
+            导入恢复 JSON
+            <input type="file" id="input-import-progress" accept=".json,application/json" class="visually-hidden">
+          </label>
+          <button type="button" class="btn btn-danger-outline" id="btn-request-reset">清空全部练习记录</button>
+        </div>
+        <div id="reset-confirm-box" class="danger-confirm" hidden>
+          <p>确认要清空全部翻译、完形、Summary 与模拟考学习记录吗？此操作不可撤销。</p>
+          <div class="btn-row">
+            <button type="button" class="btn btn-sm btn-outline" id="btn-cancel-reset">取消</button>
+            <button type="button" class="btn btn-sm btn-danger" id="btn-confirm-reset">确认清空</button>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="settings-group">
+        <h3>当前数据核验摘要</h3>
+        <ul id="settings-stats-list" class="compact-list"></ul>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>
