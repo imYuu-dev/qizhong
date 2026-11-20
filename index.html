@@ -92,6 +92,15 @@ nav.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .fc-answer{border-top:1px solid var(--line);padding-top:14px;margin-top:6px}
 .fc-ans-head{font-size:17px;font-weight:700;margin:0 0 8px;line-height:1.65}
 .fc-ans-body{font-size:16px;line-height:1.85;margin:0}
+.tip-box{margin-top:12px;padding:10px 12px;border-radius:10px;background:#f0f6ff;border:1px solid #d4e3fa;font-size:14px;line-height:1.65;color:#27446b}
+.tip-box strong{color:#1b4b91}
+.cs-block{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.cs-block h2{font-size:16px;margin:0 0 8px;color:var(--red)}
+.cs-item{padding:7px 0;border-top:1px dashed var(--line);font-size:14.5px;line-height:1.65}
+.cs-item:first-of-type{border-top:0;padding-top:0}
+.cs-acc{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:#fffdf9}
+.cs-acc-btn{width:100%;text-align:left;background:transparent;border:0;padding:0;cursor:pointer;font:inherit;color:var(--ink)}
+.cs-acc-body{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:14px;color:#444;line-height:1.7}
 .lab{font-weight:700;color:var(--red)}
 .kw{background:var(--kw);border-radius:3px;padding:0 3px;font-weight:600}
 .skel-list{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
@@ -193,23 +202,24 @@ const DATA = [
     id: 1,
     short: '人口规模巨大',
     title: '1. 如何理解中国式现代化是人口规模巨大的现代化？',
-    mnemonic: { key: '是什么 · 为什么 · 怎么样 · 怎么做', line: '14亿首要特征 → 挑战与优势 → 特色与世界意义 → 从国情出发育才' },
+    mnemonic: { key: '是什么 · 为什么 · 怎么样 · 怎么做', line: '14亿首要特征 → 挑战与优势 → 特色与世界意义 → 从国情出发提素质' },
     intro: '可从[[是什么、为什么、怎么样、怎么做]]四个维度理解中国式现代化[[人口规模巨大]]这一显著特征。',
+    tip: '展开提示：人口多不自动等于人才多、生产率高，关键在于把数量转化为质量。',
     points: [
       { label: '一、是什么：', head: '我国[[14亿多人口]]整体迈入现代化，是中国式现代化的[[首要特征]]。', body: '规模[[超过现有发达国家人口总和]]，在人类历史上是前所未有的，决定了现代化建设的[[艰巨性和复杂性]]。' },
-      { label: '二、为什么：', head: '人口规模巨大带来[[挑战与优势]]两方面影响。', body: '一方面要解决14亿多人的[[吃饭、就业、教育、医疗、住房、养老]]问题，并应对[[城乡、区域发展不平衡]]；另一方面拥有丰富[[人力资源]]和[[广阔市场空间]]，是推动发展的巨大潜力。' },
+      { label: '二、为什么：', head: '人口规模巨大带来[[挑战与优势]]两方面影响。', body: '一方面要解决14亿多人的[[吃饭、就业、教育、医疗、住房、养老]]问题，并应对[[城乡、区域发展不平衡]]与资源环境压力；另一方面拥有丰富[[人力资源]]和[[广阔市场空间]]，是推动发展的巨大潜力。', tip: '考场举例：以人工智能行业为例，用户多、应用场景广有利于产品迭代，同时要靠校企合作弥补数字技能短板。' },
       { label: '三、怎么样：', head: '推进方式必然[[独具特色]]，并具有深远[[世界意义]]。', body: '发展途径和推进方式不能照搬西方；14亿多人整体迈入现代化，将[[改变现代化的世界版图]]，为人口众多的[[发展中国家提供有益经验]]。' },
-      { label: '四、怎么做：', head: '坚持[[从国情出发]]，把[[人口优势转化为人才优势]]。', body: '考虑发展阶段和资源环境，[[保持历史耐心]]、[[循序渐进]]；通过发展教育和提高人口素质，把规模优势转化为[[人才优势和创新优势]]，统筹完善公共服务。' }
+      { label: '四、怎么做：', head: '坚持[[从国情出发]]，把[[人口优势转化为人才优势]]。', body: '考虑发展阶段和资源环境，[[保持历史耐心]]、[[循序渐进]]；通过发展教育、[[技能培训]]、就业服务和人才流动提高人口素质，把规模优势转化为[[人才优势和创新优势]]，统筹完善公共服务。' }
     ]
   },
   {
     id: 2,
     short: '物质与精神文明',
     title: '2. 如何理解中国式现代化是物质文明和精神文明相协调的现代化？',
-    mnemonic: { key: '互促 · 物 · 精 · 全面发展', line: '一关系两建设一目标' },
+    mnemonic: { key: '互促 · 物 · 精 · 全面发展', line: '一关系两建设一目标（有钱不自动等于精神富足）' },
     intro: '[[物质富足、精神富有]]是社会主义现代化的根本要求。中国式现代化既要提高生产力和物质生活水平，也要丰富人民的精神世界，[[促进人的全面发展]]。',
     points: [
-      { label: '第一，', head: '两者[[相互联系、相互促进]]。', body: '物质文明为教育、文化事业提供[[物质基础]]；精神文明为现代化提供[[精神动力和智力支持]]，必须[[统筹推进]]。' },
+      { label: '第一，', head: '两者[[相互联系、相互促进]]。', body: '物质文明为教育、文化事业提供[[物质基础]]；精神文明为现代化提供[[思想保证、精神动力和智力支持]]，必须[[统筹推进]]。', tip: '理解提示：有钱不自动等于精神生活丰富；反过来，文化教育发展也需要稳定的经济和物质支撑。' },
       { label: '第二，', head: '物质文明建设要[[夯实物质基础]]。', body: '坚持以经济建设为中心，[[推动高质量发展]]，增强[[科技创新能力]]，完善[[现代化产业体系]]，持续改善人民生活。' },
       { label: '第三，', head: '精神文明建设要[[满足人民的精神文化需求]]。', body: '加强[[理想信念教育]]，践行[[社会主义核心价值观]]，发展[[社会主义先进文化]]，弘扬[[中华优秀传统文化]]，提高社会文明程度。' },
       { label: '第四，', head: '目标是[[物的全面丰富和人的全面发展]]。', body: '把两个文明建设贯穿现代化全过程，让人民生活水平提高的同时，[[精神生活也更加充实]]。' }
@@ -219,38 +229,38 @@ const DATA = [
     id: 3,
     short: '根本动力：改革',
     title: '3. 推进中国式现代化的根本动力是什么？为什么？',
-    mnemonic: { key: '理 · 史 · 现 · 长', line: '理论、历史、现实、长远四角度' },
+    mnemonic: { key: '理 · 史 · 现 · 长', line: '调关系 · 破障碍 · 放活力 · 惠民生防风险' },
     intro: '[[全面深化改革]]是推进中国式现代化的根本动力。',
     points: [
       { label: '第一，', head: '从理论上看，改革能[[解放和发展生产力]]。', body: '社会发展中存在[[生产力与生产关系、经济基础与上层建筑]]的矛盾运动，改革推动[[生产关系适应生产力、上层建筑适应经济基础]]，为现代化创造制度条件。' },
       { label: '第二，', head: '从历史上看，中国式现代化是在[[改革开放]]中不断推进的。', body: '改革开放深刻改变了经济体制、社会结构和对外关系，[[激发了人民群众的积极性和创造性]]；新时代全面深化改革[[破除了体制机制障碍]]，为全面建成小康社会提供了保障。' },
-      { label: '第三，', head: '从现实上看，必须靠改革解决[[深层次矛盾]]。', body: '推动[[高质量发展]]、发展[[新质生产力]]、促进[[社会公平正义]]，都要改革不适应的体制机制，才能[[释放创新潜力、增强发展活力]]。' },
-      { label: '第四，', head: '从长远看，改革为现代化提供持续的[[制度保障]]。', body: '深化改革有助于[[完善中国特色社会主义制度]]、提高[[国家治理能力]]，使现代化成果[[更多更公平惠及全体人民]]。' }
+      { label: '第三，', head: '从现实上看，必须靠改革解决[[深层次矛盾]]。', body: '面对[[市场分割、成果转化不畅、公共服务不均]]等堵点，不能只靠加投入，必须通过改革权责、规则和激励机制，推动[[高质量发展]]、发展[[新质生产力]]、促进[[社会公平正义]]，[[释放创新潜力、增强发展活力]]。', tip: '展开提示：抓“产权保护、公平竞争、人才评价”这几个改革抓手最容易展开字数。' },
+      { label: '第四，', head: '从长远看，改革为现代化提供持续的[[制度保障]]。', body: '深化改革有助于[[完善中国特色社会主义制度]]、提高[[国家治理能力]]，统筹发展和安全，使现代化成果[[更多更公平惠及全体人民]]。' }
     ]
   },
   {
     id: 4,
     short: '五项重大原则',
     title: '4. 在推进中国式现代化的过程中，我们要牢牢把握哪些重大原则？',
-    mnemonic: { key: '党 · 路 · 民 · 改 · 斗', line: '党领路，为人民，靠改革，敢斗争' },
+    mnemonic: { key: '党 · 路 · 民 · 改 · 斗', line: '谁领导 · 走啥路 · 为了谁 · 靠啥改 · 敢斗争' },
     intro: '党的二十大提出，前进道路上必须牢牢把握[[五项重大原则]]。',
     points: [
-      { label: '第一，', head: '坚持和加强[[党的全面领导]]。', body: '维护[[党中央权威和集中统一领导]]，把党的领导落实到各领域各方面各环节，[[确保正确方向]]。' },
+      { label: '第一，', head: '坚持和加强[[党的全面领导]]。', body: '维护[[党中央权威和集中统一领导]]，把党的领导落实到各领域各方面各环节，[[确保正确方向]]，凝聚团结奋斗力量。' },
       { label: '第二，', head: '坚持[[中国特色社会主义道路]]。', body: '坚持党的[[基本路线]]，坚持[[独立自主、自力更生]]，把发展[[主动权牢牢掌握在自己手中]]。' },
       { label: '第三，', head: '坚持[[以人民为中心]]的发展思想。', body: '维护[[人民根本利益]]，增进[[民生福祉]]，依靠人民推进发展，让[[全体人民更加公平地共享]]现代化成果。' },
       { label: '第四，', head: '坚持[[深化改革开放]]。', body: '以改革[[破解深层次体制机制障碍]]，以开放[[拓展发展空间]]，增强现代化的[[动力和活力]]。' },
-      { label: '第五，', head: '坚持发扬[[斗争精神]]。', body: '增强[[忧患意识]]，[[统筹发展和安全]]，主动克服困难，维护国家[[主权、安全和发展利益]]。' }
+      { label: '第五，', head: '坚持发扬[[斗争精神]]。', body: '增强[[忧患意识]]，[[统筹发展和安全]]，敢于直面矛盾和风险，维护国家[[主权、安全和发展利益]]。' }
     ]
   },
   {
     id: 5,
     short: '毛泽东时期探索',
     title: '5. 毛泽东时期（社会主义革命和建设时期）进行了哪些探索？取得了哪些成就？有什么意义？',
-    mnemonic: { key: '探4 · 成4 · 义3', line: '探索“总路线·一五·二结合·四化”；成就“制·工·弹·社”；意义“前提基础·物质人才·经验准备”' },
+    mnemonic: { key: '探4 · 成4 · 义3', line: '一五起步 · 十大探索 · 四化定标 · 工业奠基' },
     intro: '以毛泽东同志为主要代表的中国共产党人，在[[经济文化落后]]的条件下，对社会主义建设和国家现代化进行了[[艰辛探索]]。',
     points: [
-      { label: '一、探索：', head: '围绕[[工业化和适合中国的建设道路]]展开探索。', body: '①提出[[过渡时期总路线]]（“一化三改”），把社会主义工业化和三大改造结合起来；②实施[[第一个五年计划]]，以工业建设为重点推进工业化；③提出马克思主义同中国实际进行“[[第二次结合]]”，发表《[[论十大关系]]》《[[关于正确处理人民内部矛盾的问题]]》；④[[党的八大]]提出集中力量发展生产力，[[1964年三届全国人大]]正式提出“[[四个现代化]]”目标（1954年一届全国人大已初步提出）。' },
-      { label: '二、成就：', head: '在[[制度、工业、科技和社会事业]]上取得重要成就。', body: '①确立[[社会主义基本制度]]；②建立起[[独立的比较完整的工业体系和国民经济体系]]；③“[[两弹一星]]”等尖端科技取得突破，国防力量增强；④[[教育、科学、文化、卫生]]等事业得到发展。' },
+      { label: '一、探索：', head: '围绕[[工业化和适合中国的建设道路]]展开探索。', body: '①提出[[过渡时期总路线]]（“一化三改”），把社会主义工业化和三大改造结合起来；②实施[[第一个五年计划]]，优先发展重工业推进工业化；③提出马克思主义同中国实际“[[第二次结合]]”，发表《[[论十大关系]]》（协调重、轻工业和农业）和《[[关于正确处理人民内部矛盾的问题]]》；④[[党的八大]]提出集中力量发展生产力，[[1964年三届全国人大]]正式提出“[[四个现代化]]”目标（1954年一届全国人大已初步提出）。' },
+      { label: '二、成就：', head: '在[[制度、工业、科技和社会事业]]上取得重要成就。', body: '①确立[[社会主义基本制度]]；②建立起[[独立的比较完整的工业体系和国民经济体系]]；③“[[两弹一星]]”等尖端科技取得突破，国防力量增强；④[[教育、科学、文化、卫生]]等事业得到发展并培养了建设人才。' },
       { label: '三、意义：', head: '提供了[[宝贵经验、理论准备、物质基础]]。', body: '社会主义制度的确立奠定了[[根本政治前提和制度基础]]；建设成就积累了[[物质条件和人才力量]]；探索形成的理论和经验为改革开放后开创中国特色社会主义作了重要准备（同时也从[[“大跃进”“文革”等曲折]]中吸取了必须[[实事求是、尊重经济规律]]的教训）。' }
     ]
   },
@@ -260,11 +270,12 @@ const DATA = [
     title: '6. 何为“现代化=西方化”的迷思？为什么说中国式现代化打破了这一迷思？',
     mnemonic: { key: '迷思 · 规 · 绩 · 值 · 文路', line: '先答何为迷思（发轫西方/东方从属），再答规·绩·值·文路' },
     intro: '先说明[[“现代化=西方化”迷思的由来]]，再阐明中国式现代化如何以自身实践打破这一迷思。',
+    tip: '答法提醒：西方“先行”不等于“唯一”。若问“新图景”重点写五个中国特色；若问“文明多样性”重点写国情文化差异。',
     points: [
       { label: '一、何为迷思：', head: '[[现代化发轫于西方]]，逐渐形成了“[[东方从属于西方]]”的格局。', body: '自工业革命以来，西方资本主义国家凭借[[现代生产力的迅猛发展]]占据主动，使人误以为[[现代化道路只有西方一种模式]]、现代化就等于西方化。' },
       { label: '二、规律与特色：', head: '既遵循[[一般规律]]，又有[[中国特色]]。', body: '中国同样推进[[工业化和科技进步]]，同时坚持[[党的领导和社会主义制度]]，走出了符合自身国情的道路。' },
       { label: '三、实践证明：', head: '[[实践成就]]证明自主道路走得通。', body: '通过建设和改革开放，中国实现经济快速发展，[[全面建成小康社会]]，展现了实现现代化的[[另一幅图景]]。' },
-      { label: '四、目标价值：', head: '提出了不同的[[目标和价值追求]]。', body: '面向巨大人口规模，追求[[共同富裕]]、[[两个文明相协调]]、[[人与自然和谐共生]]、[[和平发展]]，拓展了现代化的内涵。' },
+      { label: '四、目标价值：', head: '提出了不同的[[目标和价值追求]]。', body: '面向[[人口规模巨大]]，追求[[全体人民共同富裕]]、[[两个文明相协调]]、[[人与自然和谐共生]]、[[和平发展]]，拓展了现代化的内涵。' },
       { label: '五、文明与借鉴：', head: '统一了[[文明传承与现代发展]]，拓展了[[发展中国家的道路选择]]。', body: '立足[[中华优秀传统文化]]并[[借鉴人类优秀文明成果]]，为既想加快发展又想[[保持独立自主]]的国家提供了有益启示。' }
     ]
   },
@@ -272,11 +283,11 @@ const DATA = [
     id: 7,
     short: '投资于物与投资于人',
     title: '7. 为什么在推进中国式现代化中要坚持投资于物与投资于人相结合？',
-    mnemonic: { key: '民 · 效 · 新 · 需', line: '人民中心、投资效益、新质生产力、扩大内需' },
+    mnemonic: { key: '民 · 效 · 新 · 需', line: '物打基础，人提能力，建设运营一起配' },
     intro: '[[投资于物]]指对基础设施、生产设备等实物资产的投入；[[投资于人]]指在教育、医疗、培训、就业、社保等方面的投入。二者结合能使[[经济发展与民生改善形成良性循环]]。',
     points: [
       { label: '第一，', head: '这是坚持[[以人民为中心]]、促进人的全面发展的要求。', body: '现代化的目的是[[增进人民福祉]]，投资既要改善生产生活条件，也要满足人民在成长、就业、健康、养老等方面的需要。' },
-      { label: '第二，', head: '这是[[提高投资效益]]的要求。', body: '设备和基础设施要靠[[劳动者掌握和使用]]，劳动者发挥才能也需要[[相应的物质条件]]，统筹二者才能提高资源利用效率。' },
+      { label: '第二，', head: '这是[[提高投资效益]]的要求，二者[[不是机械各占一半]]。', body: '设备和基础设施要靠[[劳动者掌握和使用]]，劳动者发挥才能也需要[[相应的物质条件]]，同步规划建设、人才和维护运营，才能避免设施闲置、提高资源利用效率。', tip: '考场经典例子：县医院不能只盖大楼买设备，还要配医生、培训、维护费和转诊制度，重点看使用效果和群众实际受益。' },
       { label: '第三，', head: '这是发展[[新质生产力]]、推动高质量发展的要求。', body: '[[劳动者是生产力中最活跃的因素]]，提高劳动者素质，再和先进技术设备结合，才能增强创新能力、[[提高劳动生产率]]。' },
       { label: '第四，', head: '这是[[扩大内需]]、畅通经济循环的要求。', body: '改善就业、收入和社保，能[[增强消费能力和信心]]；优质设施和设备能[[改善供给]]，形成投资、就业、收入、消费的[[良性循环]]。' }
     ]
@@ -285,14 +296,14 @@ const DATA = [
     id: 8,
     short: '教·科·才与新质生产力',
     title: '8. 如何理解通过教育、科技、人才一体化改革，培育和发展新质生产力？',
-    mnemonic: { key: '要 · 联 · 接 · 协 · 转', line: '新要求、内在联系、解决衔接、三方协同、成果转化' },
-    intro: '[[教育、科技、人才]]是[[全面建设社会主义现代化国家]]的[[基础性、战略性支撑]]。推进三者[[一体化改革]]，能把人才培养、科学研究和产业发展紧密连接起来，为[[新质生产力]]提供支撑。',
+    mnemonic: { key: '要 · 联 · 接 · 协 · 转', line: '链条：教育育人 → 人才创新 → 科技突破 → 产业落地 → 反哺教育' },
+    intro: '[[教育、科技、人才]]是[[全面建设社会主义现代化国家]]的[[基础性、战略性支撑]]。坚持[[科技是第一生产力、人才是第一资源、创新是第一动力]]，推进三者[[一体化改革]]，为[[新质生产力]]提供支撑。',
     points: [
-      { label: '第一，', head: '[[新质生产力]]对三者提出了更高要求。', body: '新质生产力[[以创新为主导]]，具有[[高科技、高效能、高质量]]特征，以[[提高全要素生产率]]为核心，需要不断产生新知识、新技术和高素质人才。' },
+      { label: '第一，', head: '[[新质生产力]]对三者提出了更高要求。', body: '新质生产力[[以创新为主导]]，具有[[高科技、高效能、高质量]]特征，以[[提高全要素生产率]]为核心标志，需要不断产生新知识、新技术和高素质人才。' },
       { label: '第二，', head: '三者具有[[内在联系]]。', body: '[[教育培养人才]]、传播知识；[[科技创新]]推动教育内容和培养方式更新；[[人才]]把知识转化为技术和现实生产力，三者形成良性循环。' },
       { label: '第三，', head: '一体化改革要解决[[衔接不足]]的问题。', body: '让[[学科设置、科研布局、人才培养和产业发展]]更加匹配，完善[[科研评价、人才流动、成果转化]]和收益分配机制。' },
       { label: '第四，', head: '从[[三个方面协同推进]]。', body: '教育上[[调整学科专业]]，培养拔尖创新人才和技能人才；科技上加强[[基础研究和关键核心技术攻关]]；人才上完善[[培养、引进、使用和流动]]机制。' },
-      { label: '第五，', head: '推动改革成果[[转化为生产力]]。', body: '加强[[高校、科研院所与企业合作]]，促进成果应用，推动[[传统产业升级、新兴产业和未来产业]]发展。' }
+      { label: '第五，', head: '坚持[[因地制宜]]，推动改革成果[[转化为生产力]]。', body: '加强[[高校、科研院所与企业合作]]，促进成果应用，推动[[传统产业升级、新兴产业和未来产业]]发展。', tip: '高分辨析：传统产业经过数智化、绿色化技术和组织升级也能形成新质生产力，不能只看项目名称或买几台设备。' }
     ]
   }
 ];
@@ -323,6 +334,7 @@ function buildCards(data) {
         frontPrompt: '先在心里说出这一点的【观点句】和【展开关键词】',
         backHead: p.label + p.head,
         backBody: p.body,
+        tip: p.tip || '',
         keywords: [...extractStrKeywords(p.head), ...extractStrKeywords(p.body)]
       });
     });
@@ -338,6 +350,7 @@ function buildCards(data) {
       backMnemonic: q.mnemonic,
       backIntro: q.intro,
       backPoints: q.points.map(p => ({ label: p.label, head: p.head, body: p.body })),
+      tip: q.tip || '',
       keywords: [...extractStrKeywords(q.intro), ...q.points.flatMap(p => extractStrKeywords(p.head))]
     });
   }
@@ -346,6 +359,44 @@ function buildCards(data) {
 
 const CARDS = buildCards(DATA);
 const CARD_MAP = Object.fromEntries(CARDS.map(c => [c.id, c]));
+
+// ===== 考前急救锦囊（提炼自《思政一一天速记提纲》） =====
+const CHEATSHEET = {
+  mainLine: '党领导 → 走中国路 → 为人民 → 靠改革创新 → 全面协调发展 → 贡献世界',
+  closings: [
+    '促进人的全面发展和全体人民共同富裕',
+    '为中国式现代化提供强大动力、坚实基础或制度保障'
+  ],
+  fixed: [
+    { name: '五个中国特色', mem: '人多、共富、双文明、生态、和平', full: '[[人口规模巨大]]；[[全体人民共同富裕]]；[[物质文明和精神文明相协调]]；[[人与自然和谐共生]]；[[走和平发展道路]]。' },
+    { name: '五个重大原则', mem: '党、路、民、改、斗', full: '坚持和加强[[党的全面领导]]；坚持[[中国特色社会主义道路]]；坚持[[以人民为中心]]的发展思想；坚持[[深化改革开放]]；坚持发扬[[斗争精神]]。' },
+    { name: '九个本质要求', mem: '2方向 + 5建设 + 2世界', full: '方向2：[[坚持中国共产党领导]]、[[坚持中国特色社会主义]]；建设5：[[高质量发展]]、[[全过程人民民主]]、[[丰富人民精神世界]]、[[全体人民共同富裕]]、[[人与自然和谐共生]]；世界2：[[推动构建人类命运共同体]]、[[创造人类文明新形态]]。' },
+    { name: '新发展理念', mem: '创、协、绿、开、享', full: '[[创新]]（动力）、[[协调]]（平衡）、[[绿色]]（生态）、[[开放]]（合作）、[[共享]]（成果共享）。' },
+    { name: '三个第一', mem: '科生、人资、创动', full: '[[科技是第一生产力]]，[[人才是第一资源]]，[[创新是第一动力]]。' }
+  ],
+  templates: [
+    { type: '是什么', rule: '概念 + 关键特征。先下定义或解释内涵，不急着罗列措施。' },
+    { type: '为什么', rule: '理论依据 + 中国国情 + 现实问题 + 作用意义（选最贴题的 3–4 点）。' },
+    { type: '怎么做', rule: '坚持方向 + 改革制度 + 科技人才 + 民生/生态 + 抓好落实（写清具体动作）。' },
+    { type: '关系题', rule: 'A 是什么 → B 是什么 → 各自作用 → 如何相互促进、协调发展。' },
+    { type: '材料题', rule: '材料现象 → 对应原理 → 原因影响 → 改进办法（每一点都带回材料！）。' }
+  ],
+  extras: [
+    { id: '01', title: '现代化规律与道路多样性', mem: '共同规律，不同国情', pts: '共同规律：生产力、工业化、科技与治理；道路差异：历史文化、人口资源、社会制度、发展阶段不同；结论：共性与个性统一，独立自主结合国情。' },
+    { id: '02', title: '近代中国为什么要走自己的路', mem: '器物 → 制度 → 思想 → 党领导的新道路', pts: '洋务运动（器物）→ 戊戌/辛亥（制度）→ 新文化/五四（思想）→ 中国共产党领导新探索；国情（人口多/历史长/不平衡）决定必须走自己的路。' },
+    { id: '04', title: '党的领导为什么关系现代化全局', mem: '定性质、稳目标、增动力、聚力量', pts: '定性质（社会主义方向、为了人民）；稳目标（长期规划接续奋斗）；增动力（领导改革创新）；聚力量（组织动员、统筹发展和安全）。' },
+    { id: '07', title: '高质量发展为什么是首要任务', mem: '矛盾变、阶段变、强国基、共富需、竞争逼', pts: '回应社会主要矛盾变化；适应发展阶段与约束变化；夯实强国与共同富裕物质基础；提高国际竞争与产业链安全韧性。' },
+    { id: '08', title: '新质生产力是什么、为什么重要', mem: '创新主导，三高特征，生产率跃升', pts: '创新起主导、高科技高效能高质量、核心标志是全要素生产率大幅提升；因地制宜，传统产业升级也能形成新质生产力。' },
+    { id: '11', title: '高水平社会主义市场经济体制', mem: '市场配资源，政府补不足，主体有活力，创新加开放', pts: '有效市场（决定性作用）+ 有为政府（公共服务/公平竞争/防风险）；两个毫不动摇；统一大市场与制度型开放。' },
+    { id: '14', title: '共同富裕为什么是本质特征', mem: '社会主义本质、党的宗旨、人民需要、公平共享', pts: '体现社会主义本质与党的宗旨；解决不平衡不充分；物质和精神都富裕，允许合理差别，靠高质量发展和制度逐步实现。' },
+    { id: '16', title: '坚持马克思主义意识形态指导地位', mem: '定方向、聚共识、护安全、指导实践、兴文化', pts: '把马克思主义基本原理同中国具体实际、中华优秀传统文化相结合（“两个结合”），巩固共同思想基础，维护文化安全。' },
+    { id: '17', title: '中华优秀传统文化如何“两创”', mem: '守根、转化、创新、科技、教育、互鉴', pts: '创造性转化（改造旧表达、赋予当代形式，如数字文物展示）+ 创新性发展（结合新实践补充拓展）；校企教育与交流互鉴。' },
+    { id: '18', title: '绿色发展与人与自然和谐共生', mem: '反思旧路、立足国情、保障民生、面向未来', pts: '摒弃高消耗高污染；适应我国人口产业规模与资源约束；宜居环境是民生；清洁能源、绿色技术、循环节约与法治监管。' },
+    { id: '19', title: '中国式现代化为世界带来什么机遇', mem: '大市、开放、合作、道路、治理、绿色', pts: '超大规模市场、制度型开放、互利合作、拓展发展中国家道路选择（提供经验参考而非强迫复制）、参与全球治理与绿色合作。' },
+    { id: '20', title: '现代化要不要割断中华文明', mem: '不断根、取精华、做两创、接时代', pts: '不应割断；中华文明具有连续性、创新性、统一性、包容性、和平性；批判继承、古为今用，与现代实践结合。' },
+    { id: '21', title: '中国式现代化给中华文明带来什么', mem: '物质基础、制度载体、精神内涵、世界表达', pts: '经济科技提供物质支撑（如数字博物馆）；公共文化制度保障；社会主义核心价值观融通传统；现代媒介拓展国际传播。' }
+  ]
+};
 
 // ===== 状态与日期工具 =====
 const STORAGE_KEY = 'sizheng_cards_v2';
@@ -760,6 +811,8 @@ let ui = {
   session: null,
   browseMode: 'read', // 'read' | 'cloze1' | 'cloze2'
   allShown: false,
+  csCloze: false,
+  csOpen: {},
   examQid: null,
   examSeconds: 480,
   examRunning: false,
@@ -781,6 +834,7 @@ function parseRoute() {
   const parts = h.replace(/^#\/?/, '').split('/').filter(Boolean);
   if (parts.length === 0) return { page: 'home' };
   if (parts[0] === 'study') return { page: 'study' };
+  if (parts[0] === 'cheatsheet') return { page: 'cheatsheet' };
   if (parts[0] === 'q') {
     const id = parseInt(parts[1], 10);
     const q = DATA.find(x => x.id === id) || DATA[0];
@@ -836,6 +890,7 @@ function renderHome() {
         <h1>中国式现代化 · 卡片带背</h1>
         <span class="sp"></span>
         <nav class="actions" aria-label="辅助功能">
+          <button type="button" class="btn sm" id="btn-cs">考前锦囊</button>
           <button type="button" class="btn sm" id="btn-print">打印 / PDF</button>
           <button type="button" class="btn sm" id="btn-reset">重置进度</button>
         </nav>
@@ -867,6 +922,7 @@ function renderHome() {
             <button type="button" class="btn sm" id="btn-sprint">考前全量冲刺 (${CARDS.length}张)</button>
             <button type="button" class="btn sm" id="btn-weak" ${weakCount === 0 ? 'disabled' : ''}>只刷薄弱卡 (${weakCount})</button>
             <button type="button" class="btn sm" id="btn-exam">模拟默写抽考</button>
+            <button type="button" class="btn sm" id="btn-cs2">答题模板与固定条目</button>
           </div>
         </section>
 
@@ -935,6 +991,8 @@ function renderHome() {
   document.getElementById('btn-weak').addEventListener('click', () => startStudy('weak'));
   document.getElementById('btn-exam').addEventListener('click', () => go('#/exam'));
   document.getElementById('btn-print').addEventListener('click', () => go('#/print'));
+  document.getElementById('btn-cs').addEventListener('click', () => go('#/cheatsheet'));
+  document.getElementById('btn-cs2').addEventListener('click', () => go('#/cheatsheet'));
 
   document.getElementById('btn-exam-date').addEventListener('click', () => {
     document.getElementById('dlg-date').showModal();
@@ -1098,6 +1156,7 @@ function renderStudy() {
           </div>
           <p class="fc-ans-head">${renderWithKeywords(card.backHead)}</p>
           <p class="fc-ans-body">${renderWithKeywords(card.backBody)}</p>
+          ${card.tip ? `<div class="tip-box"><strong>💡 </strong>${esc(card.tip)}</div>` : ''}
         </div>
       `;
     } else {
@@ -1123,6 +1182,7 @@ function renderStudy() {
               `;
             }).join('')}
           </ul>
+          ${card.tip ? `<div class="tip-box"><strong>💡 </strong>${esc(card.tip)}</div>` : ''}
         </div>
       `;
     }
@@ -1673,6 +1733,10 @@ function renderSelfTest() {
   assert(app.querySelectorAll('.pv .q').length === 8, 'Print view renders all 8 questions');
   document.body.classList.remove('print');
 
+  renderCheatsheet();
+  assert(app.querySelectorAll('.cs-acc').length === CHEATSHEET.extras.length,
+    `Cheatsheet renders all ${CHEATSHEET.extras.length} supplemental topics`);
+
   app.innerHTML = `
     <div class="wrap">
       <main class="card" id="selftest-report" data-status="${ok ? 'PASS' : 'FAIL'}">
@@ -1684,11 +1748,98 @@ function renderSelfTest() {
   `;
 }
 
+// ===== 考前急救锦囊 =====
+function renderCheatsheet() {
+  document.body.classList.remove('print');
+  stopExamTimer();
+  app.innerHTML = `
+    <div class="wrap">
+      <header class="qhead">
+        <button type="button" class="btn sm" id="btn-home">← 返回首页</button>
+        <span class="sp"></span>
+        <button type="button" class="btn sm pri" id="btn-go-study">去刷八题卡片</button>
+      </header>
+      <main>
+        <h1 class="qtitle" style="margin-top:0">考前急救锦囊（提纲速览）</h1>
+
+        <section class="cs-block">
+          <h2>一、整门课主线 & 万能收束句</h2>
+          <p style="margin:0 0 8px;font-weight:700;color:var(--red)">${esc(CHEATSHEET.mainLine)}</p>
+          <div class="muted"><strong>万能结尾（按题目选用）：</strong>① ${esc(CHEATSHEET.closings[0])}；② ${esc(CHEATSHEET.closings[1])}。</div>
+        </section>
+
+        <section class="cs-block">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+            <h2 style="margin:0">二、五组必背固定条目</h2>
+            <button type="button" class="btn sm" id="btn-cs-cloze">${ui.csCloze ? '显示完整条目' : '挖空自测条目'}</button>
+          </div>
+          ${CHEATSHEET.fixed.map(f => `
+            <div class="cs-item">
+              <div><strong>${esc(f.name)}</strong> <span class="badge due">${esc(f.mem)}</span></div>
+              <div style="margin-top:3px">${ui.csCloze ? renderClozeText(f.full, false) : renderWithKeywords(f.full)}</div>
+            </div>
+          `).join('')}
+        </section>
+
+        <section class="cs-block">
+          <h2>三、五种题型考场组织模板</h2>
+          ${CHEATSHEET.templates.map(t => `
+            <div class="cs-item">
+              <strong style="color:var(--red)">${esc(t.type)}：</strong>${esc(t.rule)}
+            </div>
+          `).join('')}
+        </section>
+
+        <section class="cs-block">
+          <h2>四、其余高频拓展专题（防偏题速览 · 点击展开）</h2>
+          ${CHEATSHEET.extras.map(ex => {
+            const isOpen = !!ui.csOpen[ex.id];
+            return `
+              <div class="cs-acc">
+                <button type="button" class="cs-acc-btn" data-ex="${esc(ex.id)}" aria-expanded="${isOpen}">
+                  <strong>${esc(ex.id)} ${esc(ex.title)}</strong>
+                  <span class="badge wait" style="margin-left:6px">${esc(ex.mem)}</span>
+                </button>
+                ${isOpen ? `<div class="cs-acc-body">${esc(ex.pts)}</div>` : ''}
+              </div>
+            `;
+          }).join('')}
+        </section>
+      </main>
+    </div>
+  `;
+
+  document.getElementById('btn-home').addEventListener('click', () => go('#/'));
+  document.getElementById('btn-go-study').addEventListener('click', () => startStudy('daily'));
+  document.getElementById('btn-cs-cloze').addEventListener('click', () => {
+    ui.csCloze = !ui.csCloze;
+    renderCheatsheet();
+  });
+  app.querySelectorAll('[data-ex]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.ex;
+      ui.csOpen[id] = !ui.csOpen[id];
+      renderCheatsheet();
+    });
+  });
+  app.querySelectorAll('.blank').forEach(el => {
+    const toggle = () => {
+      const now = el.classList.toggle('shown');
+      el.setAttribute('aria-pressed', now ? 'true' : 'false');
+    };
+    el.addEventListener('click', toggle);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+}
+
 // ===== 路由分发与全局快捷键 =====
 function render() {
   const route = parseRoute();
   if (route.page === 'home') renderHome();
   else if (route.page === 'study') renderStudy();
+  else if (route.page === 'cheatsheet') renderCheatsheet();
   else if (route.page === 'question') renderQuestion(route.id);
   else if (route.page === 'exam') renderExam();
   else if (route.page === 'print') renderPrint();
